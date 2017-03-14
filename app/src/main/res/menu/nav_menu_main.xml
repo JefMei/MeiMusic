@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_menu_msg"
+            android:title="我的消息"
+            android:icon="@mipmap/ic_nav_msg">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_vip"
+            android:title="会员中心"
+            android:icon="@mipmap/ic_nav_vip">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_store"
+            android:title="商城"
+            android:icon="@mipmap/ic_nav_store">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_free"
+            android:title="在线听歌免流量"
+            android:icon="@mipmap/ic_nav_free">
+        </item>
+
+    </group>
+
+    <group android:id="@+id/group_other">
+        
+        <item
+            android:id="@+id/nav_menu_identify"
+            android:title="听歌识曲"
+            android:icon="@mipmap/ic_nav_identify">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_skin"
+            android:title="主题换肤"
+            android:icon="@mipmap/ic_nav_skin">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_night"
+            android:title="夜间模式"
+            android:icon="@mipmap/ic_nav_night">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_time"
+            android:title="定时停止播放"
+            android:icon="@mipmap/ic_nav_time">
+        </item>
+
+
+        <item
+            android:id="@+id/nav_menu_cloud"
+            android:title="我的音乐云盘"
+            android:icon="@mipmap/ic_nav_cloud">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_clock"
+            android:title="音乐闹钟"
+            android:icon="@mipmap/ic_nav_clock">
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_vehicle"
+            android:title="驾驶模式"
+            android:icon="@mipmap/ic_nav_vehicle">
+        </item>
+
+    </group>
+
+</menu>
