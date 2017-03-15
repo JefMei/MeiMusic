@@ -1,6 +1,11 @@
 <resources>
     
     <string name="app_name">MeiMusic</string>
+
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+
+    <string name="search_hint">搜索音乐、歌手、歌词</string>
     
     <string name="nav_btn_setting">设置</string>
     <string name="nav_btn_exit">退出应用</string>

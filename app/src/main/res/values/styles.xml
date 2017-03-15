@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/white</item>
+        <!--<item name="actionOverflowButtonStyle">@style/OverFlow</item>-->
     </style>
 
     <style name="AppTheme" parent="AppTheme.Base">
@@ -13,5 +15,9 @@
     </style>
 
     <style name="nav_text">@style/TextAppearance.AppCompat.Subhead</style>
+
+    <!--<style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@mipmap/ic_toolbar_search</item>
+    </style>-->
 
 </resources>
