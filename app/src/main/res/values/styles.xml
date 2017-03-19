@@ -2,18 +2,34 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--修改SearchView Back键颜色，只适用于api21以上
         <item name="colorControlNormal">@color/white</item>
-        <!--<item name="actionOverflowButtonStyle">@style/OverFlow</item>-->
+        <item name="actionOverflowButtonStyle">@style/OverFlow</item>-->
     </style>
 
-    <style name="AppTheme" parent="AppTheme.Base">
+    <style name="AppTheme" parent="AppTheme.Base"></style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" ></style>
+    
+    <style name="MyTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorPrimary</item>
+        <item name="tabTextColor">@color/tab_text</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
 
     </style>
 
+    //tabText的字style
+    <style name="MyTabTextAppearance" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    //navigationView的底部button 字体style
     <style name="nav_text">@style/TextAppearance.AppCompat.Subhead</style>
 
     <!--<style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">

@@ -17,6 +17,13 @@ public abstract class BaseFragment extends Fragment{
 
     private final String IS_HIDDEN = "IS_HIDDEN";
 
+    /**
+     * 根据savedInstanceState参数来判断是否是从”内存重启“或横屏等异常的情况归来，
+     * 如果是从异常情况返回，则savedInstanceState不为空，则通过标识 isHidden
+     * 来判断该fragment在发生异常情况之前是显示的还是隐藏的，
+     * 由此避免fragment重叠的情况。
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,11 @@ public abstract class BaseFragment extends Fragment{
         initView();
     }
 
+    /**
+     * 在异常情况退出的情况下会回调此函数
+     * 保存本fragment在异常退出情况下的显示状态
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
