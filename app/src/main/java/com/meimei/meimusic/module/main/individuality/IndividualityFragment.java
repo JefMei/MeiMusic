@@ -1,13 +1,13 @@
 package com.meimei.meimusic.module.main.individuality;
 
 import android.view.View;
-import android.widget.ImageView;
 
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
 import com.meimei.meimusic.widget.CarouselView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class IndividualityFragment extends BaseFragment{
 
-    private final int[] imageRes = {R.mipmap.ic_vp_first,R.mipmap.ic_vp_second,R.mipmap.ic_vp_third,
+    private final Integer[] imageRes = {R.mipmap.ic_vp_first,R.mipmap.ic_vp_second,R.mipmap.ic_vp_third,
             R.mipmap.ic_vp_fourth,R.mipmap.ic_vp_five,R.mipmap.ic_vp_six,R.mipmap.ic_vp_seven};
 
     private List<View> mViews = new ArrayList<>();
@@ -24,14 +24,8 @@ public class IndividualityFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        for (int i=0;i<7;i++){
-            ImageView ima = new ImageView(getActivity());
-            ima.setScaleType(ImageView.ScaleType.CENTER);
-            ima.setImageResource(imageRes[i]);
-            mViews.add(ima);
-        }
         mVpView = (CarouselView) getView().findViewById(R.id.carouseview_individuality);
-        mVpView.setAdapter(mViews);
+        mVpView.setData(Arrays.asList(imageRes));
     }
 
     @Override

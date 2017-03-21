@@ -21,9 +21,7 @@ public class BaseVpAdapter extends PagerAdapter{
     public Object instantiateItem(ViewGroup container, int position) {
 
         View view = mViews.get(position);
-        if (container.getChildAt(position) == null){
-            container.addView(view);
-        }
+        container.addView(view);
 
         return view;
     }
@@ -40,5 +38,6 @@ public class BaseVpAdapter extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
     }
 }
