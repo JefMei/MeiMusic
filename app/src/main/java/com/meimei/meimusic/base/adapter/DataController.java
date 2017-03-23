@@ -10,40 +10,40 @@ public class DataController<T> {
 
     private List<T> mDataList = new ArrayList<>();
 
-    protected boolean addDataList(List<T> data){
+    public boolean addDataList(List<T> data){
         mDataList.addAll(data);
         return true;
     }
 
-    protected boolean addData(T data){
+    public boolean addData(T data){
         mDataList.add(data);
         return true;
     }
 
-    protected boolean setData(List<T> data){
+    public boolean setData(List<T> data){
         clearData();
         mDataList.addAll(data);
         return true;
     }
 
-    protected boolean clearData(){
+    public boolean clearData(){
         mDataList.clear();
         return true;
     }
 
-    protected T getData(int position){
+    public T getData(int position){
         return mDataList.get(position);
     }
 
-    protected List<T> getDataList(){
+    public List<T> getDataList(){
         return mDataList;
     }
 
-    protected int getDataSize(){
+    public int getDataSize(){
         return mDataList.size();
     }
 
-    protected boolean isContains(T data){
+    public boolean isContains(T data){
         return mDataList.contains(data);
     }
 

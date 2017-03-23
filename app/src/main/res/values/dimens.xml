@@ -5,7 +5,13 @@
 
     <dimen name="nav_btn_bottom">14sp</dimen>
 
-    //重写NavigationView属性
+    <!--重写NavigationView属性-->
     <dimen name="design_navigation_icon_padding" >8dp</dimen>
     <dimen name="design_navigation_icon_size">32dp</dimen>
+
+    <!--individuality_fragment-->
+    <dimen name="tv_magin_top">6dp</dimen>
+    <dimen name="lin_magin_top">12dp</dimen>
+    <dimen name="lin_magin_bottom">14dp</dimen>
+
 </resources>

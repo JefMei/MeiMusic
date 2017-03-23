@@ -46,4 +46,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         }
         return true;
     }
+
+    public DataController<T> getDataController(){
+        return mDataController;
+    }
 }

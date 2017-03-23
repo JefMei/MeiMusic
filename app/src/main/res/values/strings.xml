@@ -2,12 +2,29 @@
     
     <string name="app_name">MeiMusic</string>
 
+    <string name="recommend_url">http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&amp;version=5.8.1.0&amp;channel=ppzs&amp;operator=3&amp;method=baidu.ting.plaza.index&amp;cuid=89CF1E1A06826F9AB95A34DC0F6AAA14</string>
+    <string name="base_url">http://tingapi.ting.baidu.com/</string>
+    <!--http://tingapi.ting.baidu.com/v1/restserver/tingfrom=android&amp;version=5.6.5.6&amp;format=json-->
+
     <string name="nav_drawer_open">Open navigation drawer</string>
     <string name="nav_drawer_close">Close navigation drawer</string>
 
     <string name="search_hint">搜索音乐、歌手、歌词</string>
-    
+
+    <!--drawable-->
     <string name="nav_btn_setting">设置</string>
     <string name="nav_btn_exit">退出应用</string>
-    
+
+    <!--individuality_fragment-->
+    <string name="image_individuality_fm">私人FM</string>
+    <string name="image_individuality_recommend">每日歌曲推荐</string>
+    <string name="image_individuality_hot_song">云音乐热歌榜</string>
+
+    <string name="tv_recommend_song">推荐歌单</string>
+    <string name="tv_new_mucis">最新音乐</string>
+    <string name="tv_exclusive">独家放送</string>
+    <string name="tv_radio">主播电台</string>
+
+
+
 </resources>

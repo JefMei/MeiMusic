@@ -15,4 +15,11 @@
     <color name="search_hint">#55ffffff</color>
 
     <color name="tab_text">#666666</color>
+
+    <!--individuality_fragment-->
+    <color name="tv_individuality_color">#222222</color>
+    <color name="view_individuality_bg">#22222222</color>
+
+    <!--recommend_song-->
+    <color name="tv_recommend_color">#ff000000</color>
 </resources>

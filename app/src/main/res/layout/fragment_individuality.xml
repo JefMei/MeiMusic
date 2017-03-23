@@ -7,7 +7,120 @@
     <com.meimei.meimusic.widget.CarouselView
         android:id="@+id/carouseview_individuality"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="140dp">
     </com.meimei.meimusic.widget.CarouselView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/lin_magin_top"
+        android:paddingBottom="@dimen/lin_magin_bottom">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="35dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_individuality_fm"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:clickable="true"
+                android:src="@drawable/image_fm_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/tv_magin_top"
+                android:text="@string/image_individuality_fm"
+                android:textColor="@color/tv_individuality_color"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/image_individuality_recommend"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:clickable="true"
+                    android:src="@drawable/image_recommend_bg"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="21"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/tv_magin_top"
+                android:text="@string/image_individuality_recommend"
+                android:textColor="@color/tv_individuality_color"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_individuality_hot_song"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:src="@drawable/image_hot_song_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/tv_magin_top"
+                android:text="@string/image_individuality_hot_song"
+                android:textColor="@color/tv_individuality_color"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/view_individuality_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/include_recommend_song"/>
+
+    </LinearLayout>
 
 </LinearLayout>
