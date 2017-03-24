@@ -35,12 +35,12 @@ public class IndividualityPresenter extends BasePresenter {
         mModel.requestIndividualityForNet(new OnIndividualityListener() {
             @Override
             public void success(Individuality individuality) {
-
+                mView.requestRadioSuccess(individuality.result.radio.result);
             }
 
             @Override
             public void error(Throwable throwable) {
-
+                mView.requestRadioError(throwable.toString());
             }
         });
     }
@@ -49,12 +49,12 @@ public class IndividualityPresenter extends BasePresenter {
         mModel.requestIndividualityForNet(new OnIndividualityListener() {
             @Override
             public void success(Individuality individuality) {
-
+                mView.requestNewMusicSuccess(individuality.result.mix_1.result);
             }
 
             @Override
             public void error(Throwable throwable) {
-
+                mView.requestNewMusicError(throwable.toString());
             }
         });
     }

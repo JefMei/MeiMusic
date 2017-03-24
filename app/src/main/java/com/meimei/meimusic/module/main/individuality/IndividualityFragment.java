@@ -2,7 +2,9 @@ package com.meimei.meimusic.module.main.individuality;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
@@ -20,8 +22,8 @@ import butterknife.BindView;
  */
 public class IndividualityFragment extends BaseFragment implements IIndividualityView {
 
-    @BindView(R.id.recyc_recommend_song)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.linearlayout_views)
+    LinearLayout mViewsLayout;
 
     private final Integer[] imageRes = {R.mipmap.ic_vp_first,R.mipmap.ic_vp_second,R.mipmap.ic_vp_third,
             R.mipmap.ic_vp_fourth,R.mipmap.ic_vp_five,R.mipmap.ic_vp_six,R.mipmap.ic_vp_seven};
@@ -29,24 +31,64 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
     private List<View> mViews = new ArrayList<>();
 
     private List<Individuality.Recommend_Item> recomSongList = new ArrayList<>();
+    private List<Individuality.Radio_Item> radioList = new ArrayList<>();
+    private List<Individuality.NewMusic_Item> newMusicList = new ArrayList<>();
 
     private IndividualityPresenter mPresenter;
 
-    private RecomSongAdapter mAdapter;
+    private RecomSongAdapter mRecomAdapter;
+    private RadioAdapter mRadioAdapter;
+    private NewMusicAdapter mNewMusicAdapter;
+
+    private RecyclerView mRecomRecycView;
+    private RecyclerView mNewMusicRecycView;
+    private RecyclerView mRadioRecycView;
 
     private CarouselView mVpView;
-
+    private View mRecomView;
+    private View mRadioView;
+    private View mNewMusicView;
 
     @Override
     protected void initView() {
         mPresenter = new IndividualityPresenter(this);
         mVpView = (CarouselView) getView().findViewById(R.id.carouseview_individuality);
-        mVpView.setData(Arrays.asList(imageRes));
 
+        initRecyclerView();
+        initData();
+    }
+
+    private void initData() {
+        mVpView.setData(Arrays.asList(imageRes));
         mPresenter.loadRecomSong();
-        mAdapter = new RecomSongAdapter();
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        mRecyclerView.setAdapter(mAdapter);
+        mPresenter.loadNewMusic();
+        mPresenter.loadRadio();
+    }
+
+    private void initRecyclerView() {
+
+        mRecomView = LayoutInflater.from(getActivity()).inflate(R.layout.include_recommend_song,null,false);
+        mRadioView = LayoutInflater.from(getActivity()).inflate(R.layout.include_radio,null,false);
+        mNewMusicView = LayoutInflater.from(getActivity()).inflate(R.layout.include_new_music,null,false);
+
+        mRecomRecycView = (RecyclerView) mRecomView.findViewById(R.id.recyc_recommend_song);
+        mNewMusicRecycView = (RecyclerView) mNewMusicView.findViewById(R.id.recyc_new_music);
+        mRadioRecycView = (RecyclerView) mRadioView.findViewById(R.id.recyc_radio);
+
+        mRecomAdapter = new RecomSongAdapter(getActivity());
+        mNewMusicAdapter = new NewMusicAdapter(getActivity());
+        mRadioAdapter = new RadioAdapter(getActivity());
+
+        mRecomRecycView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        mRecomRecycView.setAdapter(mRecomAdapter);
+        mNewMusicRecycView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        mNewMusicRecycView.setAdapter(mNewMusicAdapter);
+        mRadioRecycView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        mRadioRecycView.setAdapter(mRadioAdapter);
+
+        mViewsLayout.addView(mRecomView);
+        mViewsLayout.addView(mRadioView);
+        mViewsLayout.addView(mNewMusicView);
 
     }
 
@@ -63,7 +105,7 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
     @Override
     public void requestRecomSongSuccess(List<Individuality.Recommend_Item> list) {
         recomSongList.addAll(list);
-        mAdapter.loadData(recomSongList);
+        mRecomAdapter.loadData(recomSongList);
 
     }
 
@@ -71,4 +113,28 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
     public void requestRecomSongError(String errorInfo) {
 
     }
+
+    @Override
+    public void requestRadioSuccess(List<Individuality.Radio_Item> list) {
+        radioList.addAll(list);
+        mRadioAdapter.loadData(radioList);
+    }
+
+    @Override
+    public void requestRadioError(String errorInfo) {
+
+    }
+
+    @Override
+    public void requestNewMusicSuccess(List<Individuality.NewMusic_Item> list) {
+        newMusicList.addAll(list);
+        mNewMusicAdapter.loadData(newMusicList);
+    }
+
+    @Override
+    public void requestNewMusicError(String errorInfo) {
+
+    }
+
+
 }

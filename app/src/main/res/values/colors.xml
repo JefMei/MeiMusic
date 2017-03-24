@@ -21,5 +21,6 @@
     <color name="view_individuality_bg">#22222222</color>
 
     <!--recommend_song-->
-    <color name="tv_recommend_color">#ff000000</color>
+    <color name="tv_recommend_introdution">#ff000000</color>
+    <color name="tv_recommend_num">#ffffffff</color>
 </resources>
