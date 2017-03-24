@@ -6,6 +6,10 @@
     
     <color name="white">#ffffff</color>
 
+    <!--view 灰色分割线-->
+    <color name="view_line_color">#E0E0E0</color>
+
+
     <color name="nav_btn_bottom_normal_bg">#ffffff</color>
     <color name="nav_btn_bottom_pressed_asd">#eeeeee</color>
     <color name="nav_text">#333333</color>
@@ -17,10 +21,15 @@
     <color name="tab_text">#666666</color>
 
     <!--individuality_fragment-->
-    <color name="tv_individuality_color">#222222</color>
-    <color name="view_individuality_bg">#22222222</color>
+    <color name="tv_color_individuality">#222222</color>
 
     <!--recommend_song-->
-    <color name="tv_recommend_introdution">#ff000000</color>
-    <color name="tv_recommend_num">#ffffffff</color>
+    <color name="tv_recommend_introdution_individuality">#ff222222</color>
+    <color name="tv_recommend_num_individuality">#ffffffff</color>
+
+    <!--推荐歌单标题-->
+    <color name="tv_textcolor_title_individuality">#ff222222</color>
+    <color name="tv_textcolor_author_item_individuality">#cc666666</color>
+    
+
 </resources>

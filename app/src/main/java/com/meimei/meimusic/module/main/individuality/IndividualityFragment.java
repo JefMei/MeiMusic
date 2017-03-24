@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
@@ -20,7 +21,7 @@ import butterknife.BindView;
 /**
  * Created by 梅梅 on 2017/3/18.
  */
-public class IndividualityFragment extends BaseFragment implements IIndividualityView {
+public class IndividualityFragment extends BaseFragment implements IIndividualityView, View.OnClickListener {
 
     @BindView(R.id.linearlayout_views)
     LinearLayout mViewsLayout;
@@ -44,18 +45,28 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
     private RecyclerView mNewMusicRecycView;
     private RecyclerView mRadioRecycView;
 
+    private TextView mChangeTv;
     private CarouselView mVpView;
     private View mRecomView;
     private View mRadioView;
     private View mNewMusicView;
+    private View mChangeView;
 
     @Override
     protected void initView() {
-        mPresenter = new IndividualityPresenter(this);
-        mVpView = (CarouselView) getView().findViewById(R.id.carouseview_individuality);
 
+        initOhter();
         initRecyclerView();
         initData();
+        addView();
+    }
+
+    private void initOhter() {
+        mPresenter = new IndividualityPresenter(this);
+        mVpView = (CarouselView) getView().findViewById(R.id.carouseview_individuality);
+        mChangeView = LayoutInflater.from(getActivity()).inflate(R.layout.include_change_individuality,null,false);
+        mChangeTv = (TextView) mChangeView.findViewById(R.id.tv_change_individuality);
+        mChangeTv.setOnClickListener(this);
     }
 
     private void initData() {
@@ -63,6 +74,13 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mPresenter.loadRecomSong();
         mPresenter.loadNewMusic();
         mPresenter.loadRadio();
+    }
+
+    private void addView() {
+        mViewsLayout.addView(mRecomView);
+        mViewsLayout.addView(mRadioView);
+        mViewsLayout.addView(mNewMusicView);
+        mViewsLayout.addView(mChangeView);
     }
 
     private void initRecyclerView() {
@@ -75,6 +93,10 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mNewMusicRecycView = (RecyclerView) mNewMusicView.findViewById(R.id.recyc_new_music);
         mRadioRecycView = (RecyclerView) mRadioView.findViewById(R.id.recyc_radio);
 
+        mRecomRecycView.setNestedScrollingEnabled(false);
+        mNewMusicRecycView.setNestedScrollingEnabled(false);
+        mRadioRecycView.setNestedScrollingEnabled(false);
+
         mRecomAdapter = new RecomSongAdapter(getActivity());
         mNewMusicAdapter = new NewMusicAdapter(getActivity());
         mRadioAdapter = new RadioAdapter(getActivity());
@@ -86,20 +108,6 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mRadioRecycView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         mRadioRecycView.setAdapter(mRadioAdapter);
 
-        mViewsLayout.addView(mRecomView);
-        mViewsLayout.addView(mRadioView);
-        mViewsLayout.addView(mNewMusicView);
-
-    }
-
-    @Override
-    protected int getLayoutRes() {
-        return R.layout.fragment_individuality;
-    }
-
-    public static IndividualityFragment newInstance(){
-        IndividualityFragment individualityFragment = new IndividualityFragment();
-        return individualityFragment;
     }
 
     @Override
@@ -136,5 +144,18 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
 
     }
 
+    @Override
+    public void onClick(View view) {
 
+    }
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_individuality;
+    }
+
+    public static IndividualityFragment newInstance(){
+        IndividualityFragment individualityFragment = new IndividualityFragment();
+        return individualityFragment;
+    }
 }

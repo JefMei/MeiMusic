@@ -5,13 +5,29 @@
 
     <dimen name="nav_btn_bottom">14sp</dimen>
 
+    <!--view 灰色分割线-->
+    <dimen name="view_line_height">0.3dp</dimen>
+
     <!--重写NavigationView属性-->
     <dimen name="design_navigation_icon_padding" >8dp</dimen>
     <dimen name="design_navigation_icon_size">32dp</dimen>
 
     <!--individuality_fragment-->
-    <dimen name="tv_magin_top">6dp</dimen>
-    <dimen name="lin_magin_top">12dp</dimen>
-    <dimen name="lin_magin_bottom">14dp</dimen>
+    <dimen name="tv_magin_top_individuality">6dp</dimen>
+    <dimen name="rela_magin_top_individuality">12dp</dimen>
+    <dimen name="rela_magin_bottom_individuality">14dp</dimen>
+    <dimen name="lin_magin_top_songlist_layout_individuality">18dp</dimen>
 
+    <!--推荐歌单layout的距离-->
+    <dimen name="lin_height_title_individuality">18dp</dimen>
+    <dimen name="lin_maginbottom_title_individuality">15dp</dimen>
+    <!--推荐歌单的textview 和 红线view-->
+    <dimen name="tv_maginleft_title_individuality">5dp</dimen>
+    <dimen name="tv_textsize_title_individuality">15sp</dimen>
+    <dimen name="v_width_title_individuality">2dp</dimen>
+    <!--推荐歌单item-->
+    <dimen name="tv_text_padding_individuality">3dp</dimen>
+    <dimen name="tv_text_paddingbottom_new_music_individuality">4dp</dimen>
+    <dimen name="tv_textsize_item_individuality">12sp</dimen>
+    <dimen name="tv_textsize_author_item_individuality">11sp</dimen>
 </resources>

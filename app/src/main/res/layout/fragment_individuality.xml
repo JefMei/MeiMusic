@@ -18,8 +18,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/lin_magin_top"
-            android:paddingBottom="@dimen/lin_magin_bottom">
+            android:paddingTop="@dimen/rela_magin_top_individuality"
+            android:paddingBottom="@dimen/rela_magin_bottom_individuality">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,9 +39,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/tv_magin_top"
+                    android:layout_marginTop="@dimen/tv_magin_top_individuality"
                     android:text="@string/image_individuality_fm"
-                    android:textColor="@color/tv_individuality_color"
+                    android:textColor="@color/tv_color_individuality"
                     android:textSize="12sp"/>
 
             </LinearLayout>
@@ -79,9 +79,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/tv_magin_top"
+                    android:layout_marginTop="@dimen/tv_magin_top_individuality"
                     android:text="@string/image_individuality_recommend"
-                    android:textColor="@color/tv_individuality_color"
+                    android:textColor="@color/tv_color_individuality"
                     android:textSize="12sp"/>
 
             </LinearLayout>
@@ -105,9 +105,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/tv_magin_top"
+                    android:layout_marginTop="@dimen/tv_magin_top_individuality"
                     android:text="@string/image_individuality_hot_song"
-                    android:textColor="@color/tv_individuality_color"
+                    android:textColor="@color/tv_color_individuality"
                     android:textSize="12sp"/>
 
             </LinearLayout>
@@ -116,16 +116,19 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:background="@color/view_individuality_bg"/>
+            android:layout_height="@dimen/view_line_height"
+            android:background="@color/view_line_color"/>
 
         <LinearLayout
             android:id="@+id/linearlayout_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/lin_magin_top_songlist_layout_individuality"
             android:orientation="vertical">
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 
