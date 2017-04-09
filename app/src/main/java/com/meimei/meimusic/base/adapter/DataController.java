@@ -47,4 +47,8 @@ public class DataController<T> {
         return mDataList.contains(data);
     }
 
+    public int size(){
+        return mDataList.size();
+    }
+
 }

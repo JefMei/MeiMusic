@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/image_item_songs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"/>
+
+        <include layout="@layout/include_header_num"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_item_song_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="这些声音里藏着故事（华语女声篇）"/>
+
+</LinearLayout>

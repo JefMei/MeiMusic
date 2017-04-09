@@ -74,7 +74,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         initToolbar();
         initNavigationView();
         initViewPager();
-
     }
 
     private void initToolbar(){

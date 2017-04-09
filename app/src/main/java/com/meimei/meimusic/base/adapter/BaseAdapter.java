@@ -31,6 +31,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         return true;
     }
 
+    public boolean addDataList(List<T> dataList){
+        mDataController.addDataList(dataList);
+        notifyDataSetChanged();
+        return true;
+    }
+
     public boolean addData(T data){
         if (!mDataController.isContains(data)){
             mDataController.addData(data);
@@ -45,6 +51,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             notifyDataSetChanged();
         }
         return true;
+    }
+
+    public int size(){
+        return mDataController.size();
     }
 
     public DataController<T> getDataController(){

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:layout_marginRight="3dp"
+    android:layout_marginTop="2dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/image_item_recommend_headset"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_headset" />
+
+    <TextView
+        android:id="@+id/tv_item_recommend_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="1dp"
+        android:textColor="@color/tv_recommend_num_individuality"
+        android:textSize="12sp" />
+
+</LinearLayout>
+
