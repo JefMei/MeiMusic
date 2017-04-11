@@ -20,7 +20,7 @@ public class DataController<T> {
         return true;
     }
 
-    public boolean setData(List<T> data){
+    public boolean updateData(List<T> data){
         clearData();
         mDataList.addAll(data);
         return true;
@@ -29,6 +29,14 @@ public class DataController<T> {
     public boolean clearData(){
         mDataList.clear();
         return true;
+    }
+
+    public boolean remove(int position){
+        if (position < getDataSize()){
+            mDataList.remove(position);
+            return true;
+        }
+        return false;
     }
 
     public T getData(int position){
@@ -47,8 +55,5 @@ public class DataController<T> {
         return mDataList.contains(data);
     }
 
-    public int size(){
-        return mDataList.size();
-    }
 
 }

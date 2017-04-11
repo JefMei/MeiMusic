@@ -1,6 +1,7 @@
 package com.meimei.meimusic.module.main.songs;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +25,9 @@ import butterknife.ButterKnife;
  */
 public class SongsAdapter extends BaseAdapter<SongList.Song>{
 
+    private static final int TYPE_NORMAL = 0;
+    private static final int TYPE_FOOTER = 1;
+
     private Context mContext;
 
     public SongsAdapter(Context context) {
@@ -32,17 +36,67 @@ public class SongsAdapter extends BaseAdapter<SongList.Song>{
 
     @Override
     protected RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
-        return new SongsViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyc_songs,parent,false));
+        View view;
+        if (viewType == TYPE_NORMAL){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyc_songs,parent,false);
+            return new SongsViewHolder(view);
+        }else{
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyc_songs_footer,parent,false);
+            return new FootViewHolder(view);
+        }
+
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        SongsViewHolder viewHolder = (SongsViewHolder) holder;
-        viewHolder.setData(getDataController().getData(position));
 
-        if (position%2 == 0){
-            viewHolder.setMargin();
+        if (holder instanceof SongsViewHolder){
+
+            SongsViewHolder viewHolder = (SongsViewHolder) holder;
+            viewHolder.setData(getDataController().getData(position));
+
+            if (position%2 == 0){
+                viewHolder.setMargin();
+            }
+        }else if (holder instanceof FootViewHolder){
+
+            FootViewHolder viewHolder = (FootViewHolder) holder;
+            viewHolder.startLoadingAnimation();
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (getDataController().getData(position) == null){
+            return TYPE_FOOTER;
+        }else
+            return TYPE_NORMAL;
+    }
+
+    /**
+     * 重写此方法用于实现不规则item,使得 loadingItem 占据一排(2个格子)
+     * @param recyclerView
+     */
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+
+        if (layoutManager instanceof GridLayoutManager){
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (getItemViewType(position) == TYPE_FOOTER){
+                        return gridLayoutManager.getSpanCount();
+                    }else {
+                        return 1;
+                    }
+                }
+            });
+
         }
     }
 
@@ -66,13 +120,32 @@ public class SongsAdapter extends BaseAdapter<SongList.Song>{
             Glide.with(mContext)
                     .load(songInfo.pic_300)
                     .into(mSongsImage);
-            mNum.setText(songInfo.listenum + "");
             mTitle.setText(songInfo.title);
+            if (Integer.parseInt(songInfo.listenum) > 10000){
+                mNum.setText(Integer.parseInt(songInfo.listenum)/10000 + "万" );
+            }else {
+                mNum.setText(songInfo.listenum);
+            }
         }
 
         private void setMargin(){
             GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams) mLayout.getLayoutParams();
             params.setMargins(0,0,DensityUtil.dp2px(mContext,2),0);
+        }
+    }
+
+    class FootViewHolder extends RecyclerView.ViewHolder{
+
+        @BindView(R.id.image_song_footer)
+        ImageView mLoadingImage;
+
+        public FootViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
+        private void startLoadingAnimation(){
+            ((AnimationDrawable)mLoadingImage.getBackground()).start();
         }
     }
 }

@@ -25,6 +25,8 @@
     <string name="tv_exclusive">独家放送</string>
     <string name="tv_radio">主播电台</string>
 
+    <!--songsFragment-->
+    <string name="tv_songs_footer">努力加载中...</string>
 
 
 </resources>

@@ -26,7 +26,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
 
     //清空数据，并加载
     public boolean loadData(List<T> data){
-        mDataController.setData(data);
+        mDataController.updateData(data);
         notifyDataSetChanged();
         return true;
     }
@@ -36,6 +36,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         notifyDataSetChanged();
         return true;
     }
+
+
 
     public boolean addData(T data){
         if (!mDataController.isContains(data)){
@@ -53,8 +55,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         return true;
     }
 
+    public boolean remove(int position){
+        return  mDataController.remove(position);
+    }
+
     public int size(){
-        return mDataController.size();
+        return mDataController.getDataSize();
     }
 
     public DataController<T> getDataController(){

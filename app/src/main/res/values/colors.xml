@@ -30,6 +30,8 @@
     <!--推荐歌单标题-->
     <color name="tv_textcolor_title_individuality">#ff222222</color>
     <color name="tv_textcolor_author_item_individuality">#cc666666</color>
-    
+
+    <!--songsfragment-->
+    <color name="tv_song_footer">#cc666666</color>
 
 </resources>

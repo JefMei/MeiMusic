@@ -1,5 +1,6 @@
 package com.meimei.meimusic.module.main.songs;
 
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -17,10 +18,13 @@ import butterknife.BindView;
 public class SongsFragment extends BaseFragment implements ISongsView{
 
     @BindView(R.id.recyc_songs)RecyclerView mSongsRecycView;
+    @BindView(R.id.nestedscroll_songs)NestedScrollView mScrollView;
 
-    private final int pageSize = 20;   //默认每页20条信息
+    private final int pageSize = 10;   //默认每页20条信息
 
-    private int pageNo = 0;   //记录当前请求到了第几页
+    private int pageNo = 1;   //记录当前请求到了第几页
+
+    private boolean loading = false;    //标记当前是否在下拉加载状态
 
     private SongsPresenter mPresenter;
 
@@ -38,6 +42,7 @@ public class SongsFragment extends BaseFragment implements ISongsView{
         mPresenter = new SongsPresenter(this);
 
         mSongsRecycView.setNestedScrollingEnabled(false);   //防止recyclerview和scrollview滑动冲突
+        mScrollView.setOnScrollChangeListener(onScrollChangeListener);
     }
 
     private void initData() {
@@ -52,17 +57,33 @@ public class SongsFragment extends BaseFragment implements ISongsView{
         mSongsRecycView.setAdapter(mSongAdapter);
     }
 
+    private NestedScrollView.OnScrollChangeListener onScrollChangeListener =  new NestedScrollView.OnScrollChangeListener() {
+        @Override
+        public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+            if (!loading && (scrollY + 100 >= (v.getChildAt(0).getMeasuredHeight() - v.getHeight()))){
+                mSongAdapter.getDataController().addData(null);
+                mSongAdapter.notifyItemInserted(mSongAdapter.getItemCount() - 1);
+                loading = true;
+                mPresenter.loadMoreSongs(pageSize,++pageNo);
+            }
+        }
+    };
+
     /**
      * 请求歌单数据成功
      */
     @Override
     public void requestSongsSucces(List<SongList.Song> songList) {
+
         if (mSongAdapter.size() == 0){
             mSongAdapter.loadData(songList);
 
         }else {
+            loading = false;
+            mSongAdapter.remove(mSongAdapter.getItemCount() - 1);
             mSongAdapter.addDataList(songList);
         }
+
     }
 
     /**
@@ -70,7 +91,7 @@ public class SongsFragment extends BaseFragment implements ISongsView{
      */
     @Override
     public void requestSongsError(String error) {
-        if (true){}
+
     }
 
     @Override

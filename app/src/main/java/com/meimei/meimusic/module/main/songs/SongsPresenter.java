@@ -31,4 +31,18 @@ public class SongsPresenter extends BasePresenter<ISongsView>{
         },pageSize,pageNo);
     }
 
+    public void loadMoreSongs(int pageSize,int pageNo){
+        mModel.getSongsForNet(new OnSongsListener() {
+            @Override
+            public void succes(SongList songList) {
+                mView.requestSongsSucces(songList.content);
+            }
+
+            @Override
+            public void error(Throwable throwable) {
+                mView.requestSongsError(throwable.toString());
+            }
+        },pageSize,pageNo);
+    }
+
 }

@@ -33,7 +33,7 @@ public abstract class BaseVpFragmentAdapter<T> extends FragmentPagerAdapter{
     }
 
     public boolean setFragments(List<Fragment> fragments){
-        mFragments.setData(fragments);
+        mFragments.updateData(fragments);
         return true;
     }
 

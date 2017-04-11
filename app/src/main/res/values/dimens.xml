@@ -30,4 +30,7 @@
     <dimen name="tv_text_paddingbottom_new_music_individuality">4dp</dimen>
     <dimen name="tv_textsize_item_individuality">12sp</dimen>
     <dimen name="tv_textsize_author_item_individuality">11sp</dimen>
+
+    <!--songsfragment-->
+    <dimen name="tv_textsize_songs_footer">14sp</dimen>
 </resources>
