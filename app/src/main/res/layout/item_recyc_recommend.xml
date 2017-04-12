@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <ImageView
+            android:id="@+id/image_item_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"/>
+
+        <include layout="@layout/include_header_num"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_item_recommend_introdution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/tv_text_padding_individuality"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="@dimen/tv_textsize_item_individuality"
+        android:textColor="@color/tv_recommend_introdution_individuality"
+        android:text="有木有一首歌，触动到了你正经的爱情"/>
+
+</LinearLayout>
