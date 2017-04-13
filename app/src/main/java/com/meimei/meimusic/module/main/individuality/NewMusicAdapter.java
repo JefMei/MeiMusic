@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
-import com.meimei.meimusic.base.adapter.BaseAdapter;
+import com.meimei.meimusic.base.adapter.ImageAdapter;
 import com.meimei.meimusic.entity.Individuality;
 import com.meimei.meimusic.utils.DensityUtil;
 
@@ -23,13 +23,15 @@ import butterknife.ButterKnife;
 /**
  * Created by 梅梅 on 2017/3/22.
  */
-public class NewMusicAdapter extends BaseAdapter<Individuality.NewMusic_Item>{
+public class NewMusicAdapter extends ImageAdapter<Individuality.NewMusic_Item> {
 
     private Context mContext;
 
     public NewMusicAdapter(Context mContext) {
         this.mContext = mContext;
     }
+
+    private View.OnTouchListener onSongImageListener = getOnTouchListener();
 
     @Override
     protected RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
@@ -69,12 +71,15 @@ public class NewMusicAdapter extends BaseAdapter<Individuality.NewMusic_Item>{
             mIntrodution.setText(data.title);
             mAuthor.setText(data.author);
 
+            mPic.setOnTouchListener(onSongImageListener);
+
         }
 
         public void setMagin(){
             GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams) mLayoutParent.getLayoutParams();
             params.setMargins(DensityUtil.dp2px(MyApplication.getContext(),2),0,DensityUtil.dp2px(MyApplication.getContext(),2),0);
         }
+
     }
 
 }

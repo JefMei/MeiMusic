@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
-import com.meimei.meimusic.base.adapter.BaseAdapter;
+import com.meimei.meimusic.base.adapter.ImageAdapter;
 import com.meimei.meimusic.entity.Individuality;
 import com.meimei.meimusic.utils.DensityUtil;
 
@@ -23,9 +23,11 @@ import butterknife.ButterKnife;
 /**
  * Created by 梅梅 on 2017/3/22.
  */
-public class RadioAdapter extends BaseAdapter<Individuality.Radio_Item>{
+public class RadioAdapter extends ImageAdapter<Individuality.Radio_Item> {
 
     private Context mContext;
+
+    private View.OnTouchListener onSongImageListener = getOnTouchListener();
 
     public RadioAdapter(Context mContext) {
         this.mContext = mContext;
@@ -65,6 +67,8 @@ public class RadioAdapter extends BaseAdapter<Individuality.Radio_Item>{
                     .load(data.pic)
                     .into(mPic);
             mIntrodution.setText(data.title);
+
+            mPic.setOnTouchListener(onSongImageListener);
         }
 
         public void setMagin(){

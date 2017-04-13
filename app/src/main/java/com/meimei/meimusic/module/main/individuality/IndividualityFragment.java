@@ -21,7 +21,7 @@ import butterknife.BindView;
 /**
  * Created by 梅梅 on 2017/3/18.
  */
-public class IndividualityFragment extends BaseFragment implements IIndividualityView, View.OnClickListener {
+public class IndividualityFragment extends BaseFragment implements IIndividualityView{
 
     @BindView(R.id.linearlayout_views)
     LinearLayout mViewsLayout;
@@ -66,7 +66,6 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mVpView = (CarouselView) getView().findViewById(R.id.carouseview_individuality);
         mChangeView = LayoutInflater.from(getActivity()).inflate(R.layout.include_change_individuality,null,false);
         mChangeTv = (TextView) mChangeView.findViewById(R.id.tv_change_individuality);
-        mChangeTv.setOnClickListener(this);
     }
 
     private void initData() {
@@ -141,11 +140,6 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
 
     @Override
     public void requestNewMusicError(String errorInfo) {
-
-    }
-
-    @Override
-    public void onClick(View view) {
 
     }
 

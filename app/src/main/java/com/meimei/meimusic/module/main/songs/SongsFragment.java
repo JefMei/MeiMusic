@@ -4,7 +4,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -84,53 +83,25 @@ public class SongsFragment extends BaseFragment implements ISongsView {
     private View.OnTouchListener onOptions = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+
             if (event.getAction() == MotionEvent.ACTION_DOWN){
-                return new GestureDetector(getActivity(),onGestureListener).onTouchEvent(event);
+                ((GradientDrawable) mTvOptions.getBackground()).setColor(getResources().getColor(R.color.tv_color_options_title_pressed));
+                mImageOptions.setImageResource(R.drawable.ic_arrow_white);
             }
 
-            if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_MOVE){
+            if (event.getAction() == MotionEvent.ACTION_CANCEL){
                 ((GradientDrawable) mTvOptions.getBackground()).setColor(getResources().getColor(R.color.tv_color_options_title_normal));
                 mImageOptions.setImageResource(R.drawable.ic_arrow_gray);
             }
 
-            return false;
+            if (event.getAction() == MotionEvent.ACTION_UP){
+                ((GradientDrawable) mTvOptions.getBackground()).setColor(getResources().getColor(R.color.tv_color_options_title_normal));
+                mImageOptions.setImageResource(R.drawable.ic_arrow_gray);
+            }
+
+            return true;
 
         }
-    };
-
-    private GestureDetector.OnGestureListener onGestureListener = new GestureDetector.OnGestureListener() {
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent e) {
-            ((GradientDrawable) mTvOptions.getBackground()).setColor(getResources().getColor(R.color.tv_color_options_title_pressed));
-            mImageOptions.setImageResource(R.drawable.ic_arrow_white);
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            return false;
-        }
-
     };
 
     /**

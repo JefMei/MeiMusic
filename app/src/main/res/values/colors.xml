@@ -36,7 +36,7 @@
     <color name="tv_songs_footer">#cc666666</color>
     <color name="tv_color_title_songs">#ff444444</color>    //歌单item的title颜色
 
-    <color name="tv_color_options_title_pressed">#88888888</color>    //正常情况下 options 背景的颜色
+    <color name="tv_color_options_title_pressed">#88BBBBBB</color>    //正常情况下 options 背景的颜色
     <color name="tv_color_options_title_normal">#00000000</color>   //选中情况下 options 背景的颜色
 
     <!--songsfragment-->
