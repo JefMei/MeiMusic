@@ -25,8 +25,16 @@
     <string name="tv_exclusive">独家放送</string>
     <string name="tv_radio">主播电台</string>
 
+    <!--individuality_fragment-->
+
     <!--songsFragment-->
     <string name="tv_songs_footer">努力加载中...</string>
 
+    <!--songsFragment-->
+
+    <!--rankingfragment-->
+    <string name="tv_official_ranking">官方榜</string>
+
+    <!--rankingfragment-->
 
 </resources>

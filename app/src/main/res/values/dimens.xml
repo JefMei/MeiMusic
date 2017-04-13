@@ -13,27 +13,52 @@
     <dimen name="design_navigation_icon_size">32dp</dimen>
 
     <!--individuality_fragment-->
+
+
     <dimen name="tv_magin_top_individuality">6dp</dimen>
     <dimen name="rela_magin_top_individuality">12dp</dimen>
     <dimen name="rela_magin_bottom_individuality">14dp</dimen>
     <dimen name="lin_magin_top_songlist_layout_individuality">18dp</dimen>
-
-    <!--推荐歌单layout的距离-->
+    <!--推荐歌单Linearlayout的距离-->
     <dimen name="lin_height_title_individuality">18dp</dimen>
     <dimen name="lin_maginbottom_title_individuality">15dp</dimen>
-    <!--推荐歌单的textview 和 红线view-->
+    <!--推荐歌单的TextView、红线View、箭头ImageView -->
     <dimen name="tv_maginleft_title_individuality">5dp</dimen>
     <dimen name="tv_textsize_title_individuality">15sp</dimen>
     <dimen name="v_width_title_individuality">2dp</dimen>
+    <dimen name="image_width_indicate_individuality">20dp</dimen>
+    <dimen name="image_height_indicate_individuality">16dp</dimen>
+    <dimen name="image_paddingright_indicate_individuality">3dp</dimen>
     <!--推荐歌单item-->
     <dimen name="tv_text_padding_individuality">3dp</dimen>
     <dimen name="tv_text_paddingbottom_new_music_individuality">4dp</dimen>
     <dimen name="tv_textsize_item_individuality">12sp</dimen>
     <dimen name="tv_textsize_author_item_individuality">11sp</dimen>
 
+    <!--individuality_fragment-->
+
     <!--songsfragment-->
+
+
     <dimen name="tv_textsize_songs_footer">14sp</dimen>
     <dimen name="tv_textsize_item_songs">14sp</dimen>   //歌单title textsize
     <dimen name="tv_text_padding_songs">5dp</dimen>     //歌单title padding
+
+    <!--songsfragment-->
+
+    <!--rankinglist-->
+
+
+    <dimen name="lin_magintop_official_ranking">18dp</dimen>
+    <!--排行榜Linearlayout的距离-->
+    <dimen name="lin_height_title_ranking">18dp</dimen>
+    <dimen name="lin_maginbottom_title_ranking">15dp</dimen>
+    <!--官方榜的TextView 和 红线View-->
+    <dimen name="tv_maginleft_title_ranking">5dp</dimen>
+    <dimen name="tv_textsize_title_ranking">15sp</dimen>
+    <dimen name="v_width_title_ranking">2dp</dimen>
+
+
+    <!--rankinglist-->
 
 </resources>

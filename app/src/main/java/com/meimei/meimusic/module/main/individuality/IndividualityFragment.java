@@ -75,18 +75,11 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mPresenter.loadRadio();
     }
 
-    private void addView() {
-        mViewsLayout.addView(mRecomView);
-        mViewsLayout.addView(mRadioView);
-        mViewsLayout.addView(mNewMusicView);
-        mViewsLayout.addView(mChangeView);
-    }
-
     private void initRecyclerView() {
 
-        mRecomView = LayoutInflater.from(getActivity()).inflate(R.layout.include_recommend_song,null,false);
-        mRadioView = LayoutInflater.from(getActivity()).inflate(R.layout.include_radio,null,false);
-        mNewMusicView = LayoutInflater.from(getActivity()).inflate(R.layout.include_new_music,null,false);
+        mRecomView = LayoutInflater.from(getActivity()).inflate(R.layout.view_recommend_song,null,false);
+        mRadioView = LayoutInflater.from(getActivity()).inflate(R.layout.view_radio,null,false);
+        mNewMusicView = LayoutInflater.from(getActivity()).inflate(R.layout.view_new_music,null,false);
 
         mRecomRecycView = (RecyclerView) mRecomView.findViewById(R.id.recyc_recommend_song);
         mNewMusicRecycView = (RecyclerView) mNewMusicView.findViewById(R.id.recyc_new_music);
@@ -107,6 +100,13 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mRadioRecycView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         mRadioRecycView.setAdapter(mRadioAdapter);
 
+    }
+
+    private void addView() {
+        mViewsLayout.addView(mRecomView);
+        mViewsLayout.addView(mRadioView);
+        mViewsLayout.addView(mNewMusicView);
+        mViewsLayout.addView(mChangeView);
     }
 
     @Override

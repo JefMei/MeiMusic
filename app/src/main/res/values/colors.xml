@@ -41,5 +41,7 @@
 
     <!--songsfragment-->
 
+    <!--rankingfragment-->
+    <color name="tv_textcolor_title_ranking">#ff222222</color>
 
 </resources>
