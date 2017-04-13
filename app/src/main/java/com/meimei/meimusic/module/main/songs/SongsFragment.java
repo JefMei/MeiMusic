@@ -1,8 +1,15 @@
 package com.meimei.meimusic.module.main.songs;
 
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
@@ -15,14 +22,18 @@ import butterknife.BindView;
 /**
  * Created by 梅梅 on 2017/3/18.
  */
-public class SongsFragment extends BaseFragment implements ISongsView{
+public class SongsFragment extends BaseFragment implements ISongsView {
 
     @BindView(R.id.recyc_songs)RecyclerView mSongsRecycView;
     @BindView(R.id.nestedscroll_songs)NestedScrollView mScrollView;
 
-    private final int pageSize = 10;   //默认每页20条信息
+    @BindView(R.id.relative_song_options)RelativeLayout mOptions;
+    @BindView(R.id.image_songs_options)ImageView mImageOptions;
+    @BindView(R.id.tv_songs_options)TextView mTvOptions;
 
-    private int pageNo = 1;   //记录当前请求到了第几页
+    private final int pageSize = 20;   //默认每页20条信息
+
+    private int pageNo = 2;   //记录当前请求到了第几页
 
     private boolean loading = false;    //标记当前是否在下拉加载状态
 
@@ -43,6 +54,7 @@ public class SongsFragment extends BaseFragment implements ISongsView{
 
         mSongsRecycView.setNestedScrollingEnabled(false);   //防止recyclerview和scrollview滑动冲突
         mScrollView.setOnScrollChangeListener(onScrollChangeListener);
+        mOptions.setOnTouchListener(onOptions);
     }
 
     private void initData() {
@@ -67,6 +79,58 @@ public class SongsFragment extends BaseFragment implements ISongsView{
                 mPresenter.loadMoreSongs(pageSize,++pageNo);
             }
         }
+    };
+
+    private View.OnTouchListener onOptions = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN){
+                return new GestureDetector(getActivity(),onGestureListener).onTouchEvent(event);
+            }
+
+            if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_MOVE){
+                ((GradientDrawable) mTvOptions.getBackground()).setColor(getResources().getColor(R.color.tv_color_options_title_normal));
+                mImageOptions.setImageResource(R.drawable.ic_arrow_gray);
+            }
+
+            return false;
+
+        }
+    };
+
+    private GestureDetector.OnGestureListener onGestureListener = new GestureDetector.OnGestureListener() {
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public void onShowPress(MotionEvent e) {
+            ((GradientDrawable) mTvOptions.getBackground()).setColor(getResources().getColor(R.color.tv_color_options_title_pressed));
+            mImageOptions.setImageResource(R.drawable.ic_arrow_white);
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            return false;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            return false;
+        }
+
     };
 
     /**
@@ -103,5 +167,7 @@ public class SongsFragment extends BaseFragment implements ISongsView{
         SongsFragment songsFragment = new SongsFragment();
         return songsFragment;
     }
+
+
 
 }

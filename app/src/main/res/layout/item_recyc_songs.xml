@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearlayout_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +7,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="183dp">
 
         <ImageView
             android:id="@+id/image_item_songs"
@@ -25,6 +24,12 @@
         android:id="@+id/tv_item_song_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="这些声音里藏着故事（华语女声篇）"/>
+        android:layout_marginBottom="15dp"
+        android:padding="@dimen/tv_text_padding_songs"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="这些声音里藏着故事（华语女声篇）"
+        android:textColor="@color/tv_color_title_songs"
+        android:textSize="@dimen/tv_textsize_item_songs"/>
 
 </LinearLayout>

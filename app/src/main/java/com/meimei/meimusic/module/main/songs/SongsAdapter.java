@@ -90,13 +90,12 @@ public class SongsAdapter extends BaseAdapter<SongList.Song>{
                 @Override
                 public int getSpanSize(int position) {
                     if (getItemViewType(position) == TYPE_FOOTER){
-                        return gridLayoutManager.getSpanCount();
+                        return gridLayoutManager.getSpanCount();    //返回一行所占的格子数
                     }else {
                         return 1;
                     }
                 }
             });
-
         }
     }
 

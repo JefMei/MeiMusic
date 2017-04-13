@@ -11,9 +11,39 @@
         android:descendantFocusability="blocksDescendants"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:src="@mipmap/ic_vp_first"
+            android:scaleType="centerCrop">
+
+        </ImageView>
+
         <RelativeLayout
+            android:id="@+id/relative_song_options"
             android:layout_width="wrap_content"
-            android:layout_height="80dp">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/tv_songs_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_song_options_bg"
+                android:text="全部歌单"
+                android:textColor="@color/tv_color_songs_options"/>
+
+            <ImageView
+                android:id="@+id/image_songs_options"
+                android:layout_width="15dp"
+                android:layout_height="14dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="70dp"
+                android:src="@drawable/ic_arrow_gray"/>
 
         </RelativeLayout>
 

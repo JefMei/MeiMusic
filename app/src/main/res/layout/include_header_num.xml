@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="1dp"
+        android:layout_marginLeft="2dp"
         android:textColor="@color/tv_recommend_num_individuality"
         android:textSize="12sp" />
 

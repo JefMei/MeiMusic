@@ -33,4 +33,7 @@
 
     <!--songsfragment-->
     <dimen name="tv_textsize_songs_footer">14sp</dimen>
+    <dimen name="tv_textsize_item_songs">14sp</dimen>   //歌单title textsize
+    <dimen name="tv_text_padding_songs">5dp</dimen>     //歌单title padding
+
 </resources>

@@ -27,8 +27,10 @@
             android:textSize="@dimen/tv_textsize_title_individuality"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="18dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_arrow_gray"/>
 
     </LinearLayout>
 

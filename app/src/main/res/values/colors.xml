@@ -26,12 +26,20 @@
     <!--recommend_song-->
     <color name="tv_recommend_introdution_individuality">#ff222222</color>
     <color name="tv_recommend_num_individuality">#ffffffff</color>
-
     <!--推荐歌单标题-->
     <color name="tv_textcolor_title_individuality">#ff222222</color>
     <color name="tv_textcolor_author_item_individuality">#cc666666</color>
+    <!--recommend_song-->
 
     <!--songsfragment-->
-    <color name="tv_song_footer">#cc666666</color>
+    <color name="tv_color_songs_options">#333333</color>
+    <color name="tv_songs_footer">#cc666666</color>
+    <color name="tv_color_title_songs">#ff444444</color>    //歌单item的title颜色
+
+    <color name="tv_color_options_title_pressed">#88888888</color>    //正常情况下 options 背景的颜色
+    <color name="tv_color_options_title_normal">#00000000</color>   //选中情况下 options 背景的颜色
+
+    <!--songsfragment-->
+
 
 </resources>

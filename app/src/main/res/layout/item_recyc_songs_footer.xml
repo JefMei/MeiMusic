@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/image_song_footer"
-        android:layout_width="16dp"
+        android:layout_width="17dp"
         android:layout_height="18dp"
         android:layout_gravity="center_vertical"
         android:background="@drawable/image_loading_bg"/>
@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="5dp"
         android:text="@string/tv_songs_footer"
-        android:textColor="@color/tv_song_footer"
+        android:textColor="@color/tv_songs_footer"
         android:textSize="@dimen/tv_textsize_songs_footer"/>
 
 </LinearLayout>
