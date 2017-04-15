@@ -1,6 +1,7 @@
 package com.meimei.meimusic.http.api;
 
 import com.meimei.meimusic.entity.Individuality;
+import com.meimei.meimusic.entity.RankingList;
 import com.meimei.meimusic.entity.SongList;
 
 import io.reactivex.Observable;
@@ -31,4 +32,12 @@ public interface Api {
     @GET("v1/restserver/ting?from=android&version=5.6.5.6&format=json&method=baidu.ting.diy.gedan") //baidu.ting.diy.getHotGeDanAndOfficial
     Observable<SongList> getSongs(@Query("page_size")int pageSize,
                                   @Query("page_no")int pageNo);
+
+    @Headers("user-agent:Mozilla / 5.0(Windows; U; Windows NT 5.1; en-US; rv:0.9.4)")
+    @GET("v1/restserver/ting?from=android&version=5.6.5.6&format=json&method=baidu.ting.billboard.billList")
+    Observable<RankingList> getRankingList(@Query("type")int type,
+                                           @Query("offset")int offset,
+                                           @Query("size")int size,
+                                           @Query("fields")String fields);
+
 }

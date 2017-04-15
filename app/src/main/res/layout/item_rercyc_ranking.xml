@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_item_ranking"
+    android:layout_width="match_parent"
+    android:layout_height="123dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyc_ranking_songs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/recyc_magin_top"
+        android:layout_marginBottom="@dimen/recyc_magin_bottom"
+        android:layout_marginLeft="@dimen/image_width_ranking"
+        android:clickable="false">
+    </android.support.v7.widget.RecyclerView>
+
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_line_height"
+        android:layout_marginLeft="@dimen/image_width_ranking"
+        android:layout_alignParentBottom="true"
+        android:background="@color/view_line_color"/>
+
+    <!--飙升榜图片-->
+    <ImageView
+        android:id="@+id/image_ranking"
+        android:layout_width="@dimen/image_width_ranking"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:scaleType="centerCrop"/>
+
+    <!--水波纹效果-->
+    <View
+        android:id="@+id/view_ripple_ranking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ripple_bg"
+        android:clickable="true"/>
+
+
+</RelativeLayout>

@@ -52,12 +52,15 @@
     <dimen name="lin_magintop_official_ranking">18dp</dimen>
     <!--排行榜Linearlayout的距离-->
     <dimen name="lin_height_title_ranking">18dp</dimen>
-    <dimen name="lin_maginbottom_title_ranking">15dp</dimen>
+    <dimen name="lin_maginbottom_title_ranking">12dp</dimen>
     <!--官方榜的TextView 和 红线View-->
     <dimen name="tv_maginleft_title_ranking">5dp</dimen>
     <dimen name="tv_textsize_title_ranking">15sp</dimen>
     <dimen name="v_width_title_ranking">2dp</dimen>
-
+    <!--官方榜里的图片+歌曲信息item-->
+    <dimen name="image_width_ranking">120dp</dimen>
+    <dimen name="recyc_magin_top">12dp</dimen>
+    <dimen name="recyc_magin_bottom">12dp</dimen>
 
     <!--rankinglist-->
 

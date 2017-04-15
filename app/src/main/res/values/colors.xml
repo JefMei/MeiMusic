@@ -43,5 +43,6 @@
 
     <!--rankingfragment-->
     <color name="tv_textcolor_title_ranking">#ff222222</color>
+    <color name="v_ripple_bg">#55000000</color>
 
 </resources>
