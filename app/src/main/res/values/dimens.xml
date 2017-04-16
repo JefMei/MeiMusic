@@ -8,12 +8,29 @@
     <!--view 灰色分割线-->
     <dimen name="view_line_height">0.3dp</dimen>
 
-    <!--重写NavigationView属性-->
+    <!--                   重写NavigationView属性                   -->
     <dimen name="design_navigation_icon_padding" >8dp</dimen>
     <dimen name="design_navigation_icon_size">32dp</dimen>
 
-    <!--individuality_fragment-->
+    <!--                   bottomView(底部播放栏)                   -->
 
+    <!--底部播放栏的song pic-->
+    <dimen name="image_height_song_pic">40dp</dimen>
+    <dimen name="image_width_song_pic">40dp</dimen>
+    <dimen name="image_magin_bottom_song_pic">2dp</dimen>
+    <dimen name="image_magin_left_song_pic">7dp</dimen>
+    <dimen name="image_magin_right_song_pic">7dp</dimen>
+    <!--底部播放栏的song name-->
+    <dimen name="tv_magin_top_song_name">7dp</dimen>
+    <dimen name="tv_size_song_name">14sp</dimen>
+    <!--底部播放栏的song author-->
+    <dimen name="tv_magin_top_song_author">3dp</dimen>
+    <dimen name="tv_size_song_author">11sp</dimen>
+    <!--底部播放栏的三个按钮-->
+    <dimen name="image_width_play">45dp</dimen>
+
+
+    <!--                   individuality_fragment                   -->
 
     <dimen name="tv_magin_top_individuality">6dp</dimen>
     <dimen name="rela_magin_top_individuality">12dp</dimen>
@@ -35,19 +52,15 @@
     <dimen name="tv_textsize_item_individuality">12sp</dimen>
     <dimen name="tv_textsize_author_item_individuality">11sp</dimen>
 
-    <!--individuality_fragment-->
-
-    <!--songsfragment-->
+    <!--                   songsfragment                   -->
 
 
     <dimen name="tv_textsize_songs_footer">14sp</dimen>
     <dimen name="tv_textsize_item_songs">14sp</dimen>   //歌单title textsize
     <dimen name="tv_text_padding_songs">5dp</dimen>     //歌单title padding
 
-    <!--songsfragment-->
 
-    <!--rankinglist-->
-
+    <!--                   rankinglist                   -->
 
     <dimen name="lin_magintop_official_ranking">18dp</dimen>
     <!--排行榜Linearlayout的距离-->
@@ -62,6 +75,7 @@
     <dimen name="recyc_magin_top">12dp</dimen>
     <dimen name="recyc_magin_bottom">12dp</dimen>
 
-    <!--rankinglist-->
+
+
 
 </resources>

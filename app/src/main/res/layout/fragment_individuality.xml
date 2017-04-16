@@ -118,7 +118,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_line_height"
-            android:background="@color/view_line_color"/>
+            android:background="@color/v_line_color"/>
 
         <LinearLayout
             android:id="@+id/linearlayout_views"

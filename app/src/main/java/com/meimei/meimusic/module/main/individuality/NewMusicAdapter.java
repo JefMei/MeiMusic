@@ -67,6 +67,7 @@ public class NewMusicAdapter extends ImageAdapter<Individuality.NewMusic_Item> {
         public void setData(Individuality.NewMusic_Item data){
             Glide.with(mContext)
                     .load(data.pic)
+                    .placeholder(R.mipmap.ic_placeholder_disk)
                     .into(mPic);
             mIntrodution.setText(data.title);
             mAuthor.setText(data.author);

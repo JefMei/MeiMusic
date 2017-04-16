@@ -65,6 +65,7 @@ public class RadioAdapter extends ImageAdapter<Individuality.Radio_Item> {
         public void setData(Individuality.Radio_Item data){
             Glide.with(mContext)
                     .load(data.pic)
+                    .placeholder(R.mipmap.ic_placeholder_disk)
                     .into(mPic);
             mIntrodution.setText(data.title);
 

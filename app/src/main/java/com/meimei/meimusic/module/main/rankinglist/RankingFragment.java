@@ -37,7 +37,7 @@ public class RankingFragment extends BaseFragment implements IRankingView{
     public static final int BILLBOARD_KING = 100;
     //欧美金曲榜
     public static final int BILLBOARD_EU_UK = 21;
-    //经典老哥榜
+    //经典老歌榜
     public static final int BILLBOARD_CLASSIC_OLD = 22;
 
     private final String TAG = "RankingFragment";

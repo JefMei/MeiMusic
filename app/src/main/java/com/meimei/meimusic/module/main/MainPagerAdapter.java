@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MainPagerAdapter extends BaseVpFragmentAdapter {
 
-    private final String[] TITLES = {"个性推荐","歌单","排行榜"};
+    private final String[] TITLES = {"个性推荐","歌单","排行榜","主播电台"};
     FragmentManager mFragmentManager;
 
     public MainPagerAdapter(FragmentManager fm) {

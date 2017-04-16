@@ -69,6 +69,7 @@ public class RecomSongAdapter extends ImageAdapter<Individuality.Recommend_Item>
         public void setData(Individuality.Recommend_Item data){
             Glide.with(mContext)
                     .load(data.pic)
+                    .placeholder(R.mipmap.ic_placeholder_disk)
                     .into(mPic);
             mIntrodution.setText(data.title);
             mNum.setText(data.listenum+"");

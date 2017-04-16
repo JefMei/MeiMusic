@@ -21,7 +21,7 @@
         android:layout_height="@dimen/view_line_height"
         android:layout_marginLeft="@dimen/image_width_ranking"
         android:layout_alignParentBottom="true"
-        android:background="@color/view_line_color"/>
+        android:background="@color/v_line_color"/>
 
     <!--飙升榜图片-->
     <ImageView
