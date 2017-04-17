@@ -1,9 +1,16 @@
 package com.meimei.meimusic.module.main.individuality;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +32,12 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
 
     @BindView(R.id.linearlayout_views)
     LinearLayout mViewsLayout;
+    @BindView(R.id.image_individuality_fm)
+    ImageView mImageFm;
+    @BindView(R.id.image_individuality_recommend)
+    ImageView mImageRecommend;
+    @BindView(R.id.image_individuality_hot_song)
+    ImageView mImageHotSong;
 
     private final Integer[] imageRes = {R.mipmap.ic_vp_first,R.mipmap.ic_vp_second,R.mipmap.ic_vp_third,
             R.mipmap.ic_vp_fourth,R.mipmap.ic_vp_five,R.mipmap.ic_vp_six,R.mipmap.ic_vp_seven};
@@ -52,6 +65,8 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
     private View mNewMusicView;
     private View mChangeView;
 
+    private MusicConnection con;
+
     @Override
     protected void initView() {
 
@@ -66,6 +81,36 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mVpView = (CarouselView) getView().findViewById(R.id.carouseview_individuality);
         mChangeView = LayoutInflater.from(getActivity()).inflate(R.layout.include_change_individuality,null,false);
         mChangeTv = (TextView) mChangeView.findViewById(R.id.tv_change_individuality);
+
+
+        mImageFm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), com.meimei.meimusic.service.MusicService.class);
+                con = new MusicConnection();
+                getActivity().bindService(intent, con, Context.BIND_AUTO_CREATE);
+            }
+        });
+
+        mImageHotSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().unbindService(con);
+            }
+        });
+    }
+
+    private class MusicConnection implements ServiceConnection{
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.i("tag","onServiceConnected");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.i("tag","onServiceDisconnected");
+        }
     }
 
     private void initData() {
