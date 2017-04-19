@@ -1,4 +1,4 @@
-package com.meimei.meimusic.module.main.rankinglist;
+package com.meimei.meimusic.module.main.rankinglist.ranking;
 
 import com.meimei.meimusic.base.view.BaseView;
 import com.meimei.meimusic.entity.RankingList;

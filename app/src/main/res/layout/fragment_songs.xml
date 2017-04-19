@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:descendantFocusability="blocksDescendants"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/recyc_bg_songs">
 
         <ImageView
             android:layout_width="match_parent"
@@ -50,7 +51,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyc_songs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/recyc_bg_songs">
 
         </android.support.v7.widget.RecyclerView>
 

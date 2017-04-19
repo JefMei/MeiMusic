@@ -1,8 +1,6 @@
 package com.meimei.meimusic.module.main.individuality;
 
 import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.widget.GridLayoutManager;
@@ -83,7 +81,7 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
         mChangeTv = (TextView) mChangeView.findViewById(R.id.tv_change_individuality);
 
 
-        mImageFm.setOnClickListener(new View.OnClickListener() {
+        /*mImageFm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), com.meimei.meimusic.service.MusicService.class);
@@ -97,7 +95,7 @@ public class IndividualityFragment extends BaseFragment implements IIndividualit
             public void onClick(View v) {
                 getActivity().unbindService(con);
             }
-        });
+        });*/
     }
 
     private class MusicConnection implements ServiceConnection{

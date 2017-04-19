@@ -1,6 +1,7 @@
-package com.meimei.meimusic.module.main.rankinglist;
+package com.meimei.meimusic.module.main.rankinglist.ranking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.adapter.BaseAdapter;
 import com.meimei.meimusic.entity.RankingList;
+import com.meimei.meimusic.module.main.rankinglist.newmusic.NewMusicActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,6 @@ public class RankingAdapter extends BaseAdapter<RankingList.songList> {
             , R.mipmap.ic_ranklist_acg};
 
     private Context mContext;
-
-
 
     public RankingAdapter(Context context) {
         mContext = context;
@@ -49,6 +49,8 @@ public class RankingAdapter extends BaseAdapter<RankingList.songList> {
         }
 
         ((RankingViewHolder) holder).setData(position, songInfoList);
+
+        ((RankingViewHolder) holder).setOnClick(position);
     }
 
     @Override
@@ -62,6 +64,8 @@ public class RankingAdapter extends BaseAdapter<RankingList.songList> {
         ImageView mImage;
         @BindView(R.id.recyc_ranking_songs)
         RecyclerView mSongInfo;
+        @BindView(R.id.view_ripple_ranking)
+        View mViewRipple;
 
         public RankingViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +82,33 @@ public class RankingAdapter extends BaseAdapter<RankingList.songList> {
             mSongInfo.setAdapter(adapter);
             adapter.loadData(songList);
         }
+
+        private void setOnClick(int position){
+
+            switch (position){
+                case 0:
+                    break;
+                case 1:
+                    mViewRipple.setOnClickListener(onNewMusicClickListener);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+        }
+
+        private View.OnClickListener onNewMusicClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, NewMusicActivity.class);
+                mContext.startActivity(intent);
+            }
+        };
 
     }
 }

@@ -39,5 +39,4 @@
         android:background="@drawable/ripple_bg"
         android:clickable="true"/>
 
-
 </RelativeLayout>

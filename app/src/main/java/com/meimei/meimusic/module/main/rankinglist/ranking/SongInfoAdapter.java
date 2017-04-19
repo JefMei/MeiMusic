@@ -1,4 +1,4 @@
-package com.meimei.meimusic.module.main.rankinglist;
+package com.meimei.meimusic.module.main.rankinglist.ranking;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

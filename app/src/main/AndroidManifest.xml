@@ -3,6 +3,7 @@
     package="com.meimei.meimusic">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     
     <application
         android:name=".MyApplication"
@@ -19,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".module.main.rankinglist.newmusic.NewMusicActivity"/>
 
         <service android:name=".service.MusicService"/>
     </application>

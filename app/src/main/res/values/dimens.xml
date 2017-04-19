@@ -74,8 +74,13 @@
     <dimen name="image_width_ranking">120dp</dimen>
     <dimen name="recyc_magin_top">12dp</dimen>
     <dimen name="recyc_magin_bottom">12dp</dimen>
-
-
+    <!--官方榜item 点击弹出的Activity-->
+    <dimen name="tv_magin_top_tv1_official_header">100dp</dimen>
+    <dimen name="tv_magin_left_tv1_official_header">25dp</dimen>
+    <dimen name="tv_size_tv1__official_header">18sp</dimen>
+    <dimen name="tv_magin_left_tv2_official_header">25dp</dimen>
+    <dimen name="tv_magin_left_tv3_official_header">25dp</dimen>
+    <dimen name="tv_size_tv3__official_header">10sp</dimen>
 
 
 </resources>

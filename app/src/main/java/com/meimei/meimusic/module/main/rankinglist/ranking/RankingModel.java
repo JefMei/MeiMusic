@@ -1,9 +1,10 @@
-package com.meimei.meimusic.module.main.rankinglist;
+package com.meimei.meimusic.module.main.rankinglist.ranking;
 
 import com.meimei.meimusic.entity.RankingList;
 import com.meimei.meimusic.http.ApiUtil;
 import com.meimei.meimusic.http.api.Api;
 import com.meimei.meimusic.module.main.callback.OnRankingListener;
+import com.meimei.meimusic.utils.MusicUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -15,8 +16,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class RankingModel implements IRankingModel{
 
-    private final String FIELDS = "song_id,title,author,album_title,pic_big,pic_small,havehigh,all_rate,charge,has_mv_mobile,learn,song_source,korean_bb_song";
-
     private Api mApi;
 
     public RankingModel() {
@@ -26,7 +25,7 @@ public class RankingModel implements IRankingModel{
 
     @Override
     public void requestRankingListForNet(int type, int offset, int size, final OnRankingListener listener) {
-        mApi.getRankingList(type,offset,size,FIELDS)
+        mApi.getRankingList(type,offset,size, MusicUtil.FIELDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<RankingList>() {

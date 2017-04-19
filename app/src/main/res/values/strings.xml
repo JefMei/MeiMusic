@@ -10,6 +10,7 @@
     <string name="nav_drawer_close">Close navigation drawer</string>
 
     <string name="search_hint">搜索音乐、歌手、歌词</string>
+    <string name="tv_net_error">请连接网络后点击屏幕重试</string>
 
     <!--drawable-->
     <string name="nav_btn_setting">设置</string>
@@ -34,7 +35,9 @@
 
     <!--rankingfragment-->
     <string name="tv_official_ranking">官方榜</string>
+    <string name="tv_official_ranking_header_tv1">云音乐</string>
 
     <!--rankingfragment-->
+
 
 </resources>

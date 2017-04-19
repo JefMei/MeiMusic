@@ -141,7 +141,7 @@ public class SongsAdapter extends ImageAdapter<SongList.Song> {
 
     class FootViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.image_song_footer)
+        @BindView(R.id.image_song_loading)
         ImageView mLoadingImage;
 
         public FootViewHolder(View itemView) {

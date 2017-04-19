@@ -1,4 +1,4 @@
-package com.meimei.meimusic.module.main.rankinglist;
+package com.meimei.meimusic.module.main.rankinglist.ranking;
 
 import com.meimei.meimusic.base.model.BaseModel;
 import com.meimei.meimusic.module.main.callback.OnRankingListener;

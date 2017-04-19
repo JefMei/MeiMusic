@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
 import com.meimei.meimusic.module.main.individuality.IndividualityFragment;
-import com.meimei.meimusic.module.main.rankinglist.RankingFragment;
+import com.meimei.meimusic.module.main.rankinglist.ranking.RankingFragment;
 import com.meimei.meimusic.module.main.songs.SongsFragment;
 
 import java.util.ArrayList;

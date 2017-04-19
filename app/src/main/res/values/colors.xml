@@ -41,6 +41,8 @@
     <!--recommend_song-->
 
     <!--songsfragment-->
+    <color name="recyc_bg_songs">#F0F4F3</color>
+
     <color name="tv_color_songs_options">#333333</color>
     <color name="tv_songs_footer">#cc666666</color>
     <color name="tv_color_title_songs">#ff444444</color>    //歌单item的title颜色
@@ -52,5 +54,9 @@
 
     <!--rankingfragment-->
     <color name="tv_textcolor_title_ranking">#ff222222</color>
+    <!--official -->
+    <color name="toolbar_bg_official_new_music">#6645B8BD</color>
+    <color name="relativelayout_bg_official_header_new_music">#45B8BD</color>
+    <color name="toolbar_bg_official_up">#528BD0</color>
 
 </resources>
