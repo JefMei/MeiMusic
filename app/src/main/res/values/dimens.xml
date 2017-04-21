@@ -87,6 +87,17 @@
     <dimen name="tv_magin_left_tv2_official_header">25dp</dimen>
     <dimen name="tv_magin_left_tv3_official_header">25dp</dimen>
     <dimen name="tv_size_tv3__official_header">10sp</dimen>
+    <!--新歌榜item的 header-item-->
+    <dimen name="relative_height_item_header_official">50dp</dimen>
+    <dimen name="image_width_playall_item_header_official">50dp</dimen>
+    <dimen name="tv_size_playall_item_header_official">16sp</dimen>
+    <dimen name="tv_size_songnum_item_header_official">15sp</dimen>
+    <dimen name="image_width_more_choice_item_header_official">25dp</dimen>
+    <dimen name="image_padding_more_choice_item_header_official">5dp</dimen>
+    <dimen name="image_marginleft_more_choice_item_header_official">3dp</dimen>
+    <dimen name="tv_marginright_more_choice_item_header_official">8dp</dimen>
+    <dimen name="tv_size_more_choice_item_header_official">14sp</dimen>
+
     <!--官方榜 的header-->
     <dimen name="framelayout_tv_official_header_height">270sp</dimen>
 

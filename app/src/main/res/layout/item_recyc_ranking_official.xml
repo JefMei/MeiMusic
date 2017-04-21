@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@drawable/ripple_bg"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/tv_item_ranking_official_num"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_item_ranking_official_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_toRightOf="@+id/tv_item_ranking_official_num"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="The Cure"
+        android:textColor="@color/tv_textcolor_main"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_item_ranking_official_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_ranking_official_name"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/tv_item_ranking_official_num"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Lady Gaga - The Cure"
+        android:textColor="@color/tv_textcolor_second"
+        android:textSize="11sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_gravity="bottom"
+        android:layout_toRightOf="@+id/tv_item_ranking_official_num"
+        android:background="@color/v_line_color" />
+
+    <ImageView
+        android:id="@+id/image_item_ranking_official_more"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ripple_bg"
+        android:clickable="true"
+        android:padding="15dp"
+        android:src="@mipmap/ic_songinfo_more" />
+
+</RelativeLayout>

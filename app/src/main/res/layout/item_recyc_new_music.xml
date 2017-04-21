@@ -37,7 +37,7 @@
             android:ellipsize="end"
             android:textSize="@dimen/tv_textsize_item_individuality"
             android:textColor="@color/tv_recommend_introdution_individuality"
-            android:text="有木有一首歌，触动到了你正经的爱情"/>
+            android:text=""/>
 
         <TextView
             android:id="@+id/tv_item_new_music_author"
@@ -45,9 +45,9 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:ellipsize="end"
-            android:text="hahahahah"
+            android:text=""
             android:textSize="@dimen/tv_textsize_author_item_individuality"
-            android:textColor="@color/tv_textcolor_author_item_individuality"/>
+            android:textColor="@color/tv_textcolor_second"/>
 
     </LinearLayout>
 

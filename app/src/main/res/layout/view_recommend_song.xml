@@ -23,7 +23,7 @@
             android:layout_marginLeft="@dimen/tv_maginleft_title_individuality"
             android:layout_gravity="center_vertical"
             android:text="@string/tv_recommend_song"
-            android:textColor="@color/tv_textcolor_title_individuality"
+            android:textColor="@color/tv_textcolor_main"
             android:textSize="@dimen/tv_textsize_title_individuality"/>
 
         <ImageView

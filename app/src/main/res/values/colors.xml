@@ -24,6 +24,10 @@
 
     <color name="tab_text">#666666</color>
 
+    <!--主标题、副标题-->
+    <color name="tv_textcolor_main">#ff444444</color>
+    <color name="tv_textcolor_second">#aa666666</color>
+
     <!--bottomview 透明背景白色-->
     <color name="v_bottom_whtie">#FCFFFFFF</color>
     <color name="tv_bottom_color_song_name">#000000</color>
@@ -35,9 +39,7 @@
     <!--recommend_song-->
     <color name="tv_recommend_introdution_individuality">#ff222222</color>
     <color name="tv_recommend_num_individuality">#ffffffff</color>
-    <!--推荐歌单标题-->
-    <color name="tv_textcolor_title_individuality">#ff222222</color>
-    <color name="tv_textcolor_author_item_individuality">#cc666666</color>
+
     <!--recommend_song-->
 
     <!--songsfragment-->

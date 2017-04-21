@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativelayout_playall_ranking_official"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/relative_height_item_header_official"
+    android:gravity="center_vertical"
+    android:background="@drawable/ripple_bg"
+    android:clickable="true"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/image_playall_ranking_official"
+        android:layout_width="@dimen/image_width_playall_item_header_official"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_playall"
+        android:padding="15dp"
+        android:scaleType="centerInside"/>
+
+    <TextView
+        android:id="@+id/tv_playall_ranking_official"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/image_playall_ranking_official"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/tv_size_playall_item_header_official"
+        android:textColor="@color/tv_textcolor_main"
+        android:text="播放全部"/>
+
+    <TextView
+        android:id="@+id/tv_songnum_ranking_official"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/tv_playall_ranking_official"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/tv_size_songnum_item_header_official"
+        android:textColor="@color/tv_textcolor_second"
+        android:text="(共100首)"/>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_more_choice_ranking_official"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:background="@drawable/ripple_bg"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/image_width_more_choice_item_header_official"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:padding="@dimen/image_padding_more_choice_item_header_official"
+            android:layout_marginLeft="@dimen/image_marginleft_more_choice_item_header_official"
+            android:src="@mipmap/ic_more_choice"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/tv_marginright_more_choice_item_header_official"
+            android:textSize="@dimen/tv_size_more_choice_item_header_official"
+            android:text="多选"/>
+    </LinearLayout>
+
+</RelativeLayout>
