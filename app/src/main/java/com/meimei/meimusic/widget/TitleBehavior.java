@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.utils.DensityUtil;
+import com.meimei.meimusic.utils.LogUtil;
 
 /**
  * Created by 梅梅 on 2017/4/19.
@@ -17,6 +18,7 @@ import com.meimei.meimusic.utils.DensityUtil;
 public class TitleBehavior extends CoordinatorLayout.Behavior<Toolbar>{
 
     private Context mContext;
+    private int offsetTotal = 0;    //总共滑动的距离
 
     public TitleBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -43,22 +45,50 @@ public class TitleBehavior extends CoordinatorLayout.Behavior<Toolbar>{
      * @param child
      * @param target
      * @param dxConsumed
-     * @param dyConsumed
+     * @param dyConsumed    在y轴上，滑动了的距离
      * @param dxUnconsumed
-     * @param dyUnconsumed
-     */
+     * @param dyUnconsumed  在y轴上，滑动到底部或顶部后，又继续滑的距离
+     * */
+
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, Toolbar child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
 
+        if (dyUnconsumed == 0){
+            offsetTotal += dyConsumed;
+        }
 
-        if (dyConsumed > DensityUtil.dp2px(MyApplication.getContext(),10)){
-//            child.setBackground(new ColorDrawable(MyApplication.getContext().getResources().getColor(R.color.colorPrimary)));
+        LogUtil.i("tag","dyUnconsumed:"+dyUnconsumed);
+        LogUtil.i("tag","dyConsumed:"+dyConsumed);
+        LogUtil.i("tag","offsetTotal:"+offsetTotal);
+
+        if (offsetTotal > DensityUtil.dp2px(MyApplication.getContext(),100) &&
+                offsetTotal < (target.findViewById(R.id.relativelayout_ranking_official_header)).getHeight()){
+
             ((TextView)child.findViewById(R.id.tv_title_toolbar_ranking_official)).setText("云音乐新歌榜");
 
+        }else if (offsetTotal < DensityUtil.dp2px(MyApplication.getContext(),100)){
+            ((TextView)child.findViewById(R.id.tv_title_toolbar_ranking_official)).setText("");
+        }else if (offsetTotal > (target.findViewById(R.id.relativelayout_ranking_official_header)).getHeight()){
+//            child.setBackground(new ColorDrawable(R.color.toolbar_bg_normal_official_new_music));
+//            child.setBackgroundColor(R.color.colorPrimary);
         }
 
     }
 
+    @Override
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, Toolbar child, View target, int dx, int dy, int[] consumed) {
+
+    }
+
+    @Override
+    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, Toolbar child, View target) {
+        super.onStopNestedScroll(coordinatorLayout, child, target);
+    }
+
+    @Override
+    public boolean onNestedFling(CoordinatorLayout coordinatorLayout, Toolbar child, View target, float velocityX, float velocityY, boolean consumed) {
+        return true;
+    }
 
     /**
      *

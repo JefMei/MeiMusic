@@ -1,45 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollview_ranking_official"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <include layout="@layout/view_ranking_official_header" />
 
-            <FrameLayout
-                android:id="@+id/framelayout_ranking_official"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyc_ranking_official"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/view_height_bottom"
+                android:layout_below="@+id/framelayout_ranking_official_header"
+                android:overScrollMode="never">
+            </android.support.v7.widget.RecyclerView>
 
-                <TextView
-                    android:id="@+id/tv_neterror_ranking_official"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="60dp"
-                    android:visibility="gone"
-                    android:text="@string/tv_net_error"/>
+            <include layout="@layout/view_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/framelayout_ranking_official_header"
+                android:layout_marginTop="@dimen/view_margin_official_top_loading"/>
 
-                <include
-                    layout="@layout/view_loading"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="60dp"
-                    android:visibility="gone" />
-
-            </FrameLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -47,8 +39,8 @@
 
     <include
         layout="@layout/view_bottom"
-        android:layout_height="50dp"
         android:layout_width="match_parent"
-        android:layout_gravity="bottom" />
+        android:layout_height="@dimen/view_height_bottom"
+        android:layout_gravity="bottom"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

@@ -55,8 +55,12 @@
     <!--rankingfragment-->
     <color name="tv_textcolor_title_ranking">#ff222222</color>
     <!--official -->
-    <color name="toolbar_bg_official_new_music">#6645B8BD</color>
+    <color name="framelayout_bg_default_official_header">#CED0CF</color>
+    <color name="toolbar_bg_transparent_official_new_music">#45B8BD</color>
+
+    <color name="toolbar_bg_official_new_music">#45B8BD</color>
+    <color name="toolbar_bg_normal_official_new_music">#000000</color>
     <color name="relativelayout_bg_official_header_new_music">#45B8BD</color>
-    <color name="toolbar_bg_official_up">#528BD0</color>
+    <!--<color name="toolbar_bg_official_up">#528BD0</color>-->
 
 </resources>

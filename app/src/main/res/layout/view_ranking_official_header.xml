@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relativelayout_ranking_official_header"
+    android:id="@+id/framelayout_ranking_official_header"
     android:layout_width="match_parent"
-    android:layout_height="270dp"
-    android:background="@color/relativelayout_bg_official_header_new_music">
+    android:layout_height="@dimen/framelayout_tv_official_header_height"
+    android:background="@color/framelayout_bg_default_official_header">
 
-    <TextView
-        android:id="@+id/tv_ranking_official_header_tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tv_magin_top_tv1_official_header"
-        android:layout_marginLeft="@dimen/tv_magin_left_tv1_official_header"
-        android:textSize="@dimen/tv_size_tv1__official_header"
-        android:textColor="@color/white"
-        android:text="@string/tv_official_ranking_header_tv1"/>
+    <RelativeLayout
+        android:id="@+id/relativelayout_ranking_official_header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_ranking_official_header_tv2"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/tv_magin_left_tv2_official_header"
-        android:layout_below="@id/tv_ranking_official_header_tv1"
-        android:textStyle="italic|bold"
-        android:textSize="50sp"
-        android:textColor="@color/white"
-        android:text="新歌榜"/>
+        <TextView
+            android:id="@+id/tv_ranking_official_header_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tv_magin_top_tv1_official_header"
+            android:layout_marginLeft="@dimen/tv_magin_left_tv1_official_header"
+            android:textStyle="italic"
+            android:textSize="@dimen/tv_size_tv1__official_header"
+            android:textColor="@color/white"
+            android:text="@string/tv_official_ranking_header_tv1"/>
 
-    <TextView
-        android:id="@+id/tv_ranking_official_header_tv3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/tv_magin_left_tv3_official_header"
-        android:layout_below="@id/tv_ranking_official_header_tv2"
-        android:textSize="@dimen/tv_size_tv3__official_header"
-        android:textColor="@color/white"
-        android:text="最新更新:4月18日"/>
+        <TextView
+            android:id="@+id/tv_ranking_official_header_tv2"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tv_magin_left_tv2_official_header"
+            android:layout_below="@id/tv_ranking_official_header_tv1"
+            android:textStyle="italic|bold"
+            android:textSize="50sp"
+            android:textColor="@color/white"
+            android:text="新歌榜"/>
+
+        <TextView
+            android:id="@+id/tv_ranking_official_header_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tv_magin_left_tv3_official_header"
+            android:layout_below="@id/tv_ranking_official_header_tv2"
+            android:textSize="@dimen/tv_size_tv3__official_header"
+            android:textColor="@color/white"
+            android:text="最新更新:4月18日"/>
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</FrameLayout>

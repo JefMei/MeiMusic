@@ -14,6 +14,8 @@
 
     <!--                   bottomView(底部播放栏)                   -->
 
+    <!--底部播放栏的高度-->
+    <dimen name="view_height_bottom">50dp</dimen>
     <!--底部播放栏的song pic-->
     <dimen name="image_height_song_pic">40dp</dimen>
     <dimen name="image_width_song_pic">40dp</dimen>
@@ -28,6 +30,10 @@
     <dimen name="tv_size_song_author">11sp</dimen>
     <!--底部播放栏的三个按钮-->
     <dimen name="image_width_play">45dp</dimen>
+
+    <!--                   loadingView加载中                   -->
+
+    <dimen name="view_margin_official_top_loading">60dp</dimen>
 
 
     <!--                   individuality_fragment                   -->
@@ -81,6 +87,8 @@
     <dimen name="tv_magin_left_tv2_official_header">25dp</dimen>
     <dimen name="tv_magin_left_tv3_official_header">25dp</dimen>
     <dimen name="tv_size_tv3__official_header">10sp</dimen>
+    <!--官方榜 的header-->
+    <dimen name="framelayout_tv_official_header_height">270sp</dimen>
 
 
 </resources>
