@@ -1,5 +1,6 @@
 package com.meimei.meimusic.module.home;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.meimei.meimusic.R;
-import com.meimei.meimusic.base.view.BaseActivity;
+import com.meimei.meimusic.base.view.BottomBarActivity;
 import com.meimei.meimusic.module.main.MainFragment;
 import com.meimei.meimusic.module.mine.MineFragment;
+import com.meimei.meimusic.service.MusicService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ import butterknife.OnClick;
 /**
  * Created by 梅梅 on 2017/3/13.
  */
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends BottomBarActivity implements ViewPager.OnPageChangeListener {
 
     @BindView(R.id.toolbar_main)
     Toolbar mToolbar;
@@ -47,12 +49,20 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @BindView(R.id.image_friends)
     ImageView mImageFriends;
 
+    private Intent mMusicIntent;
+
     private List<Fragment> mFragments = new ArrayList<>();
     private List<ImageView> mTabs = new ArrayList<>();
 
     private MainFragment mMainFragment;
 
     private MineFragment mMineFragment;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(mMusicIntent);
+    }
 
     @Override
     protected void initFragment() {
@@ -74,6 +84,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         initToolbar();
         initNavigationView();
         initViewPager();
+        initService();
+
     }
 
     private void initToolbar(){
@@ -96,6 +108,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mAdapter.setFragments(mFragments);
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(this);
+    }
+
+    private void initService() {
+        mMusicIntent = new Intent(this, MusicService.class);
+        startService(mMusicIntent);
     }
 
     @Override

@@ -12,9 +12,18 @@ import android.widget.TextView;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.adapter.BaseAdapter;
 import com.meimei.meimusic.entity.RankingList;
+import com.meimei.meimusic.entity.Song;
+import com.meimei.meimusic.http.ApiUtil;
+import com.meimei.meimusic.http.api.Api;
+import com.meimei.meimusic.module.main.callback.OnPlaySongListener;
+import com.meimei.meimusic.utils.key.AESTools;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by 梅梅 on 2017/4/18.
@@ -23,6 +32,13 @@ public class NewMusicAdapter extends BaseAdapter<RankingList.songList>{
 
     private final int ITEM_HEADER = 0;
     private final int ITEM_NORMAL = 1;
+    private final String TAG = "NewMusicAdapter";
+
+    private OnPlaySongListener onPlaySongListener;
+
+    public NewMusicAdapter(OnPlaySongListener onPlaySongListener) {
+        this.onPlaySongListener = onPlaySongListener;
+    }
 
     @Override
     protected RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
@@ -41,7 +57,7 @@ public class NewMusicAdapter extends BaseAdapter<RankingList.songList>{
         if (holder instanceof NewMusicViewHolder){
 
             NewMusicViewHolder viewHolder = (NewMusicViewHolder) holder;
-            viewHolder.setData(getDataController().getData(position),position);
+            viewHolder.setData(getDataController().getData(position),onPlaySongListener);
 
         }
 
@@ -72,16 +88,54 @@ public class NewMusicAdapter extends BaseAdapter<RankingList.songList>{
         @BindView(R.id.image_item_ranking_official_more)
         ImageView mMoreInfo;
 
+        private final String TAG = "NewMusicViewHolder";
+
+        private Api mApi;
+        private long songId;
+        private OnPlaySongListener onPlaySongListener;
+
         public NewMusicViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            mApi = ApiUtil.createApi(Api.class,ApiUtil.getBaseUrl());
+            itemView.setOnClickListener(onClickListener);
         }
 
-        private void setData(RankingList.songList songInfo,int position){
-            mNum.setText((position) + "");
+        private void setData(RankingList.songList songInfo,OnPlaySongListener listener){
+            mNum.setText((getAdapterPosition()) + "");
             mName.setText(songInfo.title);
             mAuthor.setText(songInfo.author + " - " + songInfo.title);
+            songId = songInfo.song_id;
+            onPlaySongListener = listener;
         }
+
+        private View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String a = "songid=" + songId + "&ts=" + System.currentTimeMillis();
+                String key = AESTools.encrpty(a);
+
+                mApi.getSongInfo(songId+"",System.currentTimeMillis()+"",key)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Song>() {
+                            @Override
+                            public void accept(@NonNull Song song) throws Exception {
+
+                                if (onPlaySongListener != null){
+                                    onPlaySongListener.play("" + song.songurl.url.get(0).show_link,getAdapterPosition()-1);
+                                }
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(@NonNull Throwable throwable) throws Exception {
+                                if (onPlaySongListener != null){
+                                    onPlaySongListener.playError(throwable.toString());
+                                }
+                            }
+                        });
+            }
+        };
     }
 
     public static class NewMusicHeaderViewHolder extends RecyclerView.ViewHolder{

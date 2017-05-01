@@ -13,6 +13,10 @@ public class RankingList {
     public static class songList{
         public String title;
         public String author;
+        public Long song_id;
+        public String pic_big;
+        public String pic_small;
+
     }
 
     public static class BillBoard{

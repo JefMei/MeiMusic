@@ -16,11 +16,15 @@ import android.widget.TextView;
 
 import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
-import com.meimei.meimusic.base.view.BaseActivity;
+import com.meimei.meimusic.base.view.BottomBarActivity;
 import com.meimei.meimusic.entity.RankingList;
+import com.meimei.meimusic.module.main.callback.OnPlaySongListener;
+import com.meimei.meimusic.service.IMusicBinder;
 import com.meimei.meimusic.utils.DensityUtil;
 import com.meimei.meimusic.utils.LogUtil;
+import com.meimei.meimusic.utils.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,7 +33,7 @@ import butterknife.OnClick;
 /**
  * Created by 梅梅 on 2017/4/18.
  */
-public class NewMusicActivity extends BaseActivity implements INewMusicView{
+public class NewMusicActivity extends BottomBarActivity implements INewMusicView{
 
     @BindView(R.id.toolbar_ranking_official)
     Toolbar mToolbar;
@@ -53,12 +57,16 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
     private final String TAG = "NewMusicActivity";
     private final int requestNum = 100;
 
+    private List<RankingList.songList> mSongList = new ArrayList<>();
+
     private int mStatusHeight;
 
     private NewMusicPresenter mPresenter;
 
     private NewMusicAdapter mAdapter;
     private NestedScrollView mScrollView;
+
+    private IMusicBinder musicBinder;
 
     @Override
     protected void initFragment() {
@@ -78,6 +86,7 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
 
         mStatusHeight = DensityUtil.getStatusHeight(this);
         mPresenter = new NewMusicPresenter(this);
+        musicBinder = getMusicBinder();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mHeaderLayout.setBackground(new ColorDrawable(getResources().getColor(R.color.relativelayout_bg_official_header_new_music)));
@@ -96,7 +105,7 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
 
     private void initRecyclerView() {
 
-        mAdapter = new NewMusicAdapter();
+        mAdapter = new NewMusicAdapter(onPlaySongListener);
         mRecycNewMusic.setNestedScrollingEnabled(false);
         mRecycNewMusic.setLayoutManager(new LinearLayoutManager(this));
         mRecycNewMusic.setAdapter(mAdapter);
@@ -110,10 +119,13 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
     @Override
     public void showNewMusicList(List<RankingList.songList> songlist) {
 
+        mSongList.addAll(songlist);
+
         mAdapter.addData(null);
         boolean showDataSuccess = mAdapter.addDataList(songlist);
 
         LogUtil.i(TAG,"showDataSuccess" + showDataSuccess);
+
     }
 
     public void showLoading(){
@@ -154,10 +166,25 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
         }
     };
 
+    private OnPlaySongListener onPlaySongListener = new OnPlaySongListener() {
+        @Override
+        public void play(String songUrl,int position) {
+            updateBottomView(mSongList.get(position));
+            getMusicBinder().playMusic(songUrl);
+        }
+
+        @Override
+        public void playError(String errorInfo) {
+            ToastUtil.show(errorInfo);
+        }
+    };
+
     @OnClick(R.id.image_back_toolbar_ranking_official)
-    void onBack1(){
+    void onBack(){
         finish();
     }
+
+
 
     @Override
     protected int getLayoutRes() {

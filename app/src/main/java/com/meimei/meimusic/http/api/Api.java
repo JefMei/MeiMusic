@@ -2,10 +2,12 @@ package com.meimei.meimusic.http.api;
 
 import com.meimei.meimusic.entity.Individuality;
 import com.meimei.meimusic.entity.RankingList;
+import com.meimei.meimusic.entity.Song;
 import com.meimei.meimusic.entity.SongList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
@@ -39,5 +41,11 @@ public interface Api {
                                            @Query("offset")int offset,
                                            @Query("size")int size,
                                            @Query("fields")String fields);
+
+    @Headers("user-agent:Mozilla / 5.0(Windows; U; Windows NT 5.1; en-US; rv:0.9.4)")
+    @GET("v1/restserver/ting?from=android&version=5.6.5.6&format=json&method=baidu.ting.song.getInfos")
+    Observable<Song> getSongInfo(@Query("songid")String songid,
+                                 @Query("ts")String currentTimeMillism,
+                                 @Header("e") String e);
 
 }

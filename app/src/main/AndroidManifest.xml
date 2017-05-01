@@ -16,12 +16,12 @@
         <activity android:name=".module.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".module.main.rankinglist.newmusic.NewMusicActivity"/>
+        <activity android:name=".module.home.PlayingActivity"/>
 
         <service android:name=".service.MusicService"/>
     </application>

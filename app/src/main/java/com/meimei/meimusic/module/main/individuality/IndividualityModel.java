@@ -19,6 +19,7 @@ public class IndividualityModel implements IIndividualityModel {
 
     public IndividualityModel() {
         mApi = ApiUtil.createApi(Api.class,ApiUtil.getBaseUrl());
+
     }
 
     @Override

@@ -25,6 +25,7 @@ public class MusicUtil {
     public static final String FIELDS= "song_id,title,author,album_title,pic_big,pic_small,havehigh,all_rate,charge,has_mv_mobile,learn,song_source,korean_bb_song";
 
     private MusicUtil() {
+
     }
 
 }

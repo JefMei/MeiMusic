@@ -26,8 +26,6 @@ public class RankingFragment extends BaseFragment implements IRankingView{
     @BindView(R.id.linearlayout_views)
     LinearLayout mViewsLayout;
 
-
-
     private final String TAG = "RankingFragment";
 
     private int mOfficial[] = {MusicUtil.BILLBOARD_NET_MUSIC, MusicUtil.BILLBOARD_NEW_MUSIC, MusicUtil.BILLBOARD_ORIGINAL
