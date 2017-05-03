@@ -1,5 +1,6 @@
 package com.meimei.meimusic.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,4 +28,16 @@ public class IntentUtil {
 
         context1.startActivity(intent);
     }
+
+    public static void startActivityForResult(Activity activity, Class clas, Bundle bundle){
+
+        Intent intent = new Intent(activity,clas);
+
+        if (bundle != null){
+            intent.putExtras(bundle);
+        }
+
+        activity.startActivityForResult(intent,0);
+    }
+
 }

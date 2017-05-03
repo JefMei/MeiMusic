@@ -1,10 +1,12 @@
 package com.meimei.meimusic.module.main.rankinglist.newmusic;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,13 +27,13 @@ import com.meimei.meimusic.service.IMusicBinder;
 import com.meimei.meimusic.utils.DensityUtil;
 import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
+import com.meimei.meimusic.utils.MusicUtil;
 import com.meimei.meimusic.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by 梅梅 on 2017/4/18.
@@ -40,8 +42,8 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
 
     @BindView(R.id.toolbar_ranking_official)
     Toolbar mToolbar;
-    @BindView(R.id.image_back_toolbar_ranking_official)
-    ImageView mBack;
+    /*@BindView(R.id.image_back_toolbar_ranking_official)
+    ImageView mBack;*/
     @BindView(R.id.tv_title_toolbar_ranking_official)
     TextView mTitle;
     @BindView(R.id.relativelayout_ranking_official_header)
@@ -63,6 +65,7 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
     private List<RankingList.songList> mSongList = new ArrayList<>();
 
     private int mStatusHeight;
+    private ActionBar mActionBar;
 
     private NewMusicPresenter mPresenter;
 
@@ -90,7 +93,6 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
 
         mStatusHeight = DensityUtil.getStatusHeight(this);
         mPresenter = new NewMusicPresenter(this);
-        musicBinder = getMusicBinder();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mHeaderLayout.setBackground(new ColorDrawable(getResources().getColor(R.color.relativelayout_bg_official_header_new_music)));
@@ -100,11 +102,18 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
     }
 
     private void initToolbar() {
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.toolbar_bg_transparent_official_new_music)));
-        mToolbar.setPadding(0,mStatusHeight,0,0);
 
+        setSupportActionBar(mToolbar);
+        mActionBar = getSupportActionBar();
+
+        mActionBar.setDisplayShowTitleEnabled(false);
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.toolbar_bg_transparent_official_new_music)));
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setHomeAsUpIndicator(R.mipmap.ic_actionbar_back);
+
+        mToolbar.setNavigationOnClickListener(onBack);
+
+//        mToolbar.setPadding(0,mStatusHeight,0,0);
     }
 
     private void initRecyclerView() {
@@ -151,6 +160,13 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
         mTvNetError.setVisibility(View.GONE);
     }
 
+    private View.OnClickListener onBack = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onBackPressed();
+        }
+    };
+
     private NestedScrollView.OnScrollChangeListener onScrollChangeListener = new NestedScrollView.OnScrollChangeListener() {
         @Override
         public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -181,7 +197,7 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
                 @Override
                 public void run() {
                     updateBottomView(mSongList.get(position));
-                    getMusicBinder().playMusic(songUrl);
+                    MusicUtil.playMusic(songUrl);
                 }
             });
 
@@ -198,14 +214,24 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
         Bundle bundle = new Bundle();
         bundle.putString(IntentUtil.SONGNAME,mSongList.get(mPosition).title);
         bundle.putString(IntentUtil.SINGER,mSongList.get(mPosition).author);
-        bundle.putBoolean(IntentUtil.ISPLAYING,getMusicBinder().isPlaying());
-        IntentUtil.startActivity(this, PlayingActivity.class,bundle);
+        IntentUtil.startActivityForResult(this, PlayingActivity.class,bundle);
     }
 
-    @OnClick(R.id.image_back_toolbar_ranking_official)
-    void onBack(){
-        finish();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case RESULT_OK:
+                if (MusicUtil.isPlaying()){
+                    mBtnPlay.setImageResource(R.mipmap.ic_pause);
+                }else {
+                    mBtnPlay.setImageResource(R.mipmap.ic_play);
+                }
+                break;
+            default:
+                break;
+        }
     }
+
 
     @Override
     protected int getLayoutRes() {

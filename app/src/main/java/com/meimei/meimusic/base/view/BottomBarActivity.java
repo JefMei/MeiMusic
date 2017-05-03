@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.entity.RankingList;
+import com.meimei.meimusic.utils.MusicUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,22 +20,20 @@ import butterknife.OnClick;
 public abstract class BottomBarActivity extends BaseActivity{
 
     @BindView(R.id.image_main_song_pic)
-    protected ImageView mBottomSongPic;
+    protected ImageView mBtnSongPic;
     @BindView(R.id.tv_main_song_name)
-    protected TextView mBottomSongName;
+    protected TextView mBtnSongName;
     @BindView(R.id.tv_main_song_author)
-    protected TextView mBottomSongAuthor;
+    protected TextView mBtnSongAuthor;
     @BindView(R.id.relative_bottom)
-    protected RelativeLayout mBottomView;
+    protected RelativeLayout mBtnView;
     //按钮
     @BindView(R.id.image_bottom_playlist)
-    protected ImageView mBottomPlayList;
+    protected ImageView mBtnPlayList;
     @BindView(R.id.image_bottom_play)
-    protected ImageView mBottomPlay;
+    protected ImageView mBtnPlay;
     @BindView(R.id.image_bottom_next)
-    protected ImageView mBottomNext;
-
-    protected boolean isPlaying = false;
+    protected ImageView mBtnNext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,21 +41,17 @@ public abstract class BottomBarActivity extends BaseActivity{
 
     }
 
-
-
     protected void updateBottomView(RankingList.songList songInfo){
-
-        isPlaying = true;
 
         Glide.with(this)
                 .load(songInfo.pic_small)
-                .into(mBottomSongPic);
-        mBottomSongName.setText(songInfo.title);
-        mBottomSongAuthor.setText(songInfo.author);
+                .into(mBtnSongPic);
+        mBtnSongName.setText(songInfo.title);
+        mBtnSongAuthor.setText(songInfo.author);
 
         Glide.with(this)
                 .load(R.mipmap.ic_pause)
-                .into(mBottomPlay);
+                .into(mBtnPlay);
     }
 
     protected abstract void onBottomViewClick();
@@ -74,19 +69,19 @@ public abstract class BottomBarActivity extends BaseActivity{
     @OnClick(R.id.image_bottom_play)
     void doPlay(){
 
-        if (isPlaying == true){
-            isPlaying = false;
+        if (MusicUtil.isPlaying() == true){
+
             Glide.with(this)
                     .load(R.mipmap.ic_play)
-                    .into(mBottomPlay);
-            getMusicBinder().pause();
+                    .into(mBtnPlay);
+            MusicUtil.pause();
 
         }else {
-            isPlaying = true;
+
             Glide.with(this)
                     .load(R.mipmap.ic_pause)
-                    .into(mBottomPlay);
-            getMusicBinder().start();
+                    .into(mBtnPlay);
+            MusicUtil.play();
         }
 
     }

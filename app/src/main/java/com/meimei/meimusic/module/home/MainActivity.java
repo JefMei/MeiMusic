@@ -20,6 +20,7 @@ import com.meimei.meimusic.base.view.BottomBarActivity;
 import com.meimei.meimusic.module.main.MainFragment;
 import com.meimei.meimusic.module.mine.MineFragment;
 import com.meimei.meimusic.service.MusicService;
+import com.meimei.meimusic.utils.MusicUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
     protected void onDestroy() {
         super.onDestroy();
         stopService(mMusicIntent);
+        MusicUtil.unbindService(this);
     }
 
     @Override
@@ -84,8 +86,15 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
         initToolbar();
         initNavigationView();
         initViewPager();
-        initService();
 
+    }
+
+    @Override
+    protected void initService() {
+        super.initService();
+        mMusicIntent = new Intent(this,MusicService.class);
+        startService(mMusicIntent);
+        MusicUtil.bindService(this);
     }
 
     private void initToolbar(){
@@ -108,11 +117,6 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
         mAdapter.setFragments(mFragments);
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(this);
-    }
-
-    private void initService() {
-        mMusicIntent = new Intent(this, MusicService.class);
-        startService(mMusicIntent);
     }
 
     @Override

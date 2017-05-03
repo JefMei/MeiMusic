@@ -76,12 +76,12 @@ public class MusicService extends Service {
                 e.printStackTrace();
             }
 
-            start();
+            play();
 
         }
 
         @Override
-        public void start() {
+        public void play() {
             if (mMediaPlayer != null) {
                 mMediaPlayer.start();
             }

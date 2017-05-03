@@ -5,7 +5,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
 
 import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
@@ -64,10 +63,10 @@ public class TitleBehavior extends CoordinatorLayout.Behavior<Toolbar>{
         if (offsetTotal > DensityUtil.dp2px(MyApplication.getContext(),100) &&
                 offsetTotal < (target.findViewById(R.id.relativelayout_ranking_official_header)).getHeight()){
 
-            ((TextView)child.findViewById(R.id.tv_title_toolbar_ranking_official)).setText("云音乐新歌榜");
+//            ((TextView)child.findViewById(R.id.tv_title_toolbar_ranking_official)).setText("云音乐新歌榜");
 
         }else if (offsetTotal < DensityUtil.dp2px(MyApplication.getContext(),100)){
-            ((TextView)child.findViewById(R.id.tv_title_toolbar_ranking_official)).setText("");
+//            ((TextView)child.findViewById(R.id.tv_title_toolbar_ranking_official)).setText("");
         }else if (offsetTotal > (target.findViewById(R.id.relativelayout_ranking_official_header)).getHeight()){
 //            child.setBackground(new ColorDrawable(R.color.toolbar_bg_normal_official_new_music));
 //            child.setBackgroundColor(R.color.colorPrimary);

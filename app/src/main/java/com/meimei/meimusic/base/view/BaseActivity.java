@@ -1,16 +1,9 @@
 package com.meimei.meimusic.base.view;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
-import com.meimei.meimusic.service.IMusicBinder;
-import com.meimei.meimusic.service.MusicService;
 
 import butterknife.ButterKnife;
 
@@ -18,9 +11,6 @@ import butterknife.ButterKnife;
  * Created by 梅梅 on 2017/3/13.
  */
 public abstract class BaseActivity extends AppCompatActivity{
-
-    private IMusicBinder musicBinder;
-    private MusicServiceConnection musicConnetion;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,29 +32,11 @@ public abstract class BaseActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(musicConnetion);
+//        MusicUtil.unbindService(this);
     }
 
-    private void initService() {
-        Intent intent = new Intent(this, MusicService.class);
-        musicConnetion = new MusicServiceConnection();
-        bindService(intent,musicConnetion,BIND_AUTO_CREATE);
-    }
-
-    protected IMusicBinder getMusicBinder(){
-        return musicBinder;
-    }
-
-    private class MusicServiceConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            musicBinder = (IMusicBinder) service;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
+    protected void initService() {
+//        MusicUtil.bindService(this);
     }
 
     protected abstract void initFragment();

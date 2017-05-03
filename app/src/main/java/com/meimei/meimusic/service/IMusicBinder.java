@@ -7,7 +7,7 @@ public interface IMusicBinder{
 
     void playMusic(String url);
 
-    void start();
+    void play();
 
     void pause();
 

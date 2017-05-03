@@ -10,6 +10,7 @@ import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseActivity;
 import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
+import com.meimei.meimusic.utils.MusicUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -74,9 +75,8 @@ public class PlayingActivity extends BaseActivity{
         Intent intent = getIntent();
         mSongName = intent.getStringExtra(IntentUtil.SONGNAME);
         mSinger = intent.getStringExtra(IntentUtil.SINGER);
-        boolean isplaying = intent.getBooleanExtra(IntentUtil.ISPLAYING,false);
 
-        if (isplaying){
+        if (MusicUtil.isPlaying()){
             mBtnPlay.setImageResource(R.mipmap.ic_playing_pause);
         }
 
@@ -96,24 +96,28 @@ public class PlayingActivity extends BaseActivity{
 
     }
 
+
+
     private View.OnClickListener onBack = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            setResult(RESULT_OK);
             onBackPressed();
         }
     };
 
     @OnClick(R.id.image_playing_play)
     void onPlay(){
-        if (getMusicBinder().isPlaying()){
-            LogUtil.i(TAG,"歌曲播放状态：" + getMusicBinder().isPlaying());
+        if (MusicUtil.isPlaying()){
+            LogUtil.i(TAG,"歌曲播放状态：" + MusicUtil.isPlaying());
             mBtnPlay.setImageResource(R.mipmap.ic_playing_play);
-            getMusicBinder().pause();
+            MusicUtil.pause();
         }else {
-            LogUtil.i(TAG,"歌曲播放状态：" + getMusicBinder().isPlaying());
+            LogUtil.i(TAG,"歌曲播放状态：" + MusicUtil.isPlaying());
             mBtnPlay.setImageResource(R.mipmap.ic_playing_pause);
-            getMusicBinder().start();
+            MusicUtil.play();
         }
+
     }
 
     @Override
