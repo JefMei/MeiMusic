@@ -26,6 +26,7 @@ public class NewMusicModel implements INewMusicModel{
 
     @Override
     public void getNewMusicForNet(int size, final OnNewMusicListener listener) {
+
         mApi.getRankingList(MusicUtil.BILLBOARD_NEW_MUSIC, MusicUtil.OFFSET,size,MusicUtil.FIELDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

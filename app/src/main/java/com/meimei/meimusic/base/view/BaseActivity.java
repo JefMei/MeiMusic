@@ -22,7 +22,6 @@ public abstract class BaseActivity extends AppCompatActivity{
     private IMusicBinder musicBinder;
     private MusicServiceConnection musicConnetion;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +34,8 @@ public abstract class BaseActivity extends AppCompatActivity{
             initFragment();
         }
 
-        initView();
-
         initService();
-
+        initView();
 
     }
 

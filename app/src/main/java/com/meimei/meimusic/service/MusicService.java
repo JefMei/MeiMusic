@@ -15,26 +15,26 @@ import java.io.IOException;
 /**
  * Created by 梅梅 on 2017/4/17.
  */
-public class MusicService extends Service{
+public class MusicService extends Service {
 
     private final String TAG = "MusicService";
 
     private MediaPlayer mMediaPlayer;
 
     public MusicService() {
-        Log.i(TAG,"MusicService");
+        Log.i(TAG, "MusicService");
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         mMediaPlayer = new MediaPlayer();
-        LogUtil.i(TAG,"onCreate");
+        LogUtil.i(TAG, "onCreate");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        LogUtil.i(TAG,"onStartCommand");
+        LogUtil.i(TAG, "onStartCommand");
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -42,13 +42,13 @@ public class MusicService extends Service{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        LogUtil.i(TAG,"onBind");
+        LogUtil.i(TAG, "onBind");
         return new MusicBinder();
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        LogUtil.i(TAG,"onUnbind");
+        LogUtil.i(TAG, "onUnbind");
         return super.onUnbind(intent);
     }
 
@@ -57,11 +57,11 @@ public class MusicService extends Service{
 
         mMediaPlayer.release(); //释放资源
 
-        LogUtil.i(TAG,"onDestroy");
+        LogUtil.i(TAG, "onDestroy");
         super.onDestroy();
     }
 
-    private class MusicBinder extends Binder implements IMusicBinder{
+    private class MusicBinder extends Binder implements IMusicBinder {
 
         @Override
         public void playMusic(String url) {
@@ -82,27 +82,61 @@ public class MusicService extends Service{
 
         @Override
         public void start() {
-            mMediaPlayer.start();
+            if (mMediaPlayer != null) {
+                mMediaPlayer.start();
+            }
         }
 
         @Override
         public void pause() {
-            mMediaPlayer.pause();
+            if (mMediaPlayer != null) {
+                mMediaPlayer.pause();
+            }
+        }
+
+        @Override
+        public void playOrPause() {
+            if (mMediaPlayer != null) {
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.pause();
+                } else {
+                    mMediaPlayer.start();
+                }
+            }
         }
 
         @Override
         public void stop() {
             mMediaPlayer.stop();
+            if (mMediaPlayer != null) {
+                mMediaPlayer.pause();
+            }
+        }
+
+        @Override
+        public boolean isPlaying() {
+            if (mMediaPlayer != null) {
+                return mMediaPlayer.isPlaying();
+            }
+            return false;
         }
 
         @Override
         public int getDuration() {
-            return mMediaPlayer.getDuration();
+
+            if (mMediaPlayer != null) {
+                return mMediaPlayer.getDuration();
+            }
+            return 0;
         }
 
         @Override
         public int getCurrentPosition() {
-            return mMediaPlayer.getCurrentPosition();
+
+            if (mMediaPlayer != null) {
+                return mMediaPlayer.getCurrentPosition();
+            }
+            return 0;
         }
 
 

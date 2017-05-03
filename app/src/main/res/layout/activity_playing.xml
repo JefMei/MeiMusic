@@ -19,14 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/Theme.AppCompat"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            app:contentInsetStartWithNavigation="0dp"
+            app:contentInsetStart="0dp"
+            app:titleTextAppearance="@style/Toolbar.Title.TextSize"
+            app:subtitleTextAppearance="@style/Toolbar.SubTitle.TextSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
         </android.support.v7.widget.Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/toolbar_playing"
             android:layout_above="@+id/linearlayout_playing_bottom">
 
@@ -44,6 +47,7 @@
                 android:background="@mipmap/ic_playing_line"/>
 
             <ImageView
+                android:id="@+id/image_playing_needle"
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:layout_below="@+id/view_playing_line"

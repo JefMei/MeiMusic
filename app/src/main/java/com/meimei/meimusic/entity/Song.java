@@ -17,7 +17,22 @@ public class Song {
 
     public static class UrlInfo{
         public String show_link;
+        public int down_type;
+        public int original;
+        public int free;
+        public String replay_gain;
+        public int song_file_id;
+        public String file_size;
+        public String file_extension;
+        public int file_duration;
+        public int can_see;
+        public boolean can_load;
         public double preload;
+        public int file_bitrate;
+        public String file_link;
+        public int is_udition_url;
+        public String hash;
+
     }
 
 }

@@ -14,16 +14,13 @@ import com.meimei.meimusic.base.adapter.BaseAdapter;
 import com.meimei.meimusic.entity.RankingList;
 import com.meimei.meimusic.entity.Song;
 import com.meimei.meimusic.http.ApiUtil;
+import com.meimei.meimusic.http.OkHttpUtil;
 import com.meimei.meimusic.http.api.Api;
 import com.meimei.meimusic.module.main.callback.OnPlaySongListener;
 import com.meimei.meimusic.utils.key.AESTools;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by 梅梅 on 2017/4/18.
@@ -112,10 +109,35 @@ public class NewMusicAdapter extends BaseAdapter<RankingList.songList>{
         private View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a = "songid=" + songId + "&ts=" + System.currentTimeMillis();
-                String key = AESTools.encrpty(a);
+                String str = "songid=" + songId + "&ts=" + System.currentTimeMillis();
+                String key = AESTools.encrpty(str);
 
-                mApi.getSongInfo(songId+"",System.currentTimeMillis()+"",key)
+                StringBuffer url = new StringBuffer(ApiUtil.getBaseUrl());
+                url.append("v1/restserver/ting?" +
+                        "from=android&version=5.6.5.6&format=json&method=baidu.ting.song.getInfos&");
+                url.append(str);
+                url.append("&e=").append(key);
+
+                String s = url.toString().trim();
+
+                 OkHttpUtil.requestForGet(url.toString().trim(), new OkHttpUtil.OnSongUrlCallback() {
+                     @Override
+                     public void onSuccess(Song.UrlInfo songUrl) {
+                         if (onPlaySongListener != null){
+                             onPlaySongListener.play("" + songUrl.show_link,getAdapterPosition()-1);
+                         }
+                     }
+
+                     @Override
+                     public void onFailure(String failure) {
+
+                         if (onPlaySongListener != null){
+                             onPlaySongListener.playError(failure);
+                         }
+                     }
+                 });
+
+                /*mApi.getSongInfo(songId+"",System.currentTimeMillis()+"",key)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Consumer<Song>() {
@@ -123,17 +145,16 @@ public class NewMusicAdapter extends BaseAdapter<RankingList.songList>{
                             public void accept(@NonNull Song song) throws Exception {
 
                                 if (onPlaySongListener != null){
-                                    onPlaySongListener.play("" + song.songurl.url.get(0).show_link,getAdapterPosition()-1);
+                                    onPlaySongListener.play("" + song.songurl.url.get(0).show_link,getAdapterPosition());
                                 }
+
                             }
                         }, new Consumer<Throwable>() {
                             @Override
                             public void accept(@NonNull Throwable throwable) throws Exception {
-                                if (onPlaySongListener != null){
-                                    onPlaySongListener.playError(throwable.toString());
-                                }
+
                             }
-                        });
+                        });*/
             }
         };
     }

@@ -3,6 +3,7 @@ package com.meimei.meimusic.module.main.rankinglist.newmusic;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,9 +19,11 @@ import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BottomBarActivity;
 import com.meimei.meimusic.entity.RankingList;
+import com.meimei.meimusic.module.home.PlayingActivity;
 import com.meimei.meimusic.module.main.callback.OnPlaySongListener;
 import com.meimei.meimusic.service.IMusicBinder;
 import com.meimei.meimusic.utils.DensityUtil;
+import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
 import com.meimei.meimusic.utils.ToastUtil;
 
@@ -67,6 +70,7 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
     private NestedScrollView mScrollView;
 
     private IMusicBinder musicBinder;
+    private int mPosition;   //当前播放的歌曲的position
 
     @Override
     protected void initFragment() {
@@ -114,6 +118,7 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
 
     private void initData() {
         mPresenter.requestNewMusicForNet(requestNum);
+
     }
 
     @Override
@@ -168,9 +173,18 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
 
     private OnPlaySongListener onPlaySongListener = new OnPlaySongListener() {
         @Override
-        public void play(String songUrl,int position) {
-            updateBottomView(mSongList.get(position));
-            getMusicBinder().playMusic(songUrl);
+        public void play(final String songUrl, final int position) {
+
+            mPosition = position;
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    updateBottomView(mSongList.get(position));
+                    getMusicBinder().playMusic(songUrl);
+                }
+            });
+
         }
 
         @Override
@@ -179,15 +193,23 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
         }
     };
 
+    @Override
+    protected void onBottomViewClick() {
+        Bundle bundle = new Bundle();
+        bundle.putString(IntentUtil.SONGNAME,mSongList.get(mPosition).title);
+        bundle.putString(IntentUtil.SINGER,mSongList.get(mPosition).author);
+        bundle.putBoolean(IntentUtil.ISPLAYING,getMusicBinder().isPlaying());
+        IntentUtil.startActivity(this, PlayingActivity.class,bundle);
+    }
+
     @OnClick(R.id.image_back_toolbar_ranking_official)
     void onBack(){
         finish();
     }
 
-
-
     @Override
     protected int getLayoutRes() {
         return R.layout.activity_ranking_official_new;
     }
+
 }

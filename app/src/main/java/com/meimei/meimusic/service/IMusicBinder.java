@@ -11,7 +11,11 @@ public interface IMusicBinder{
 
     void pause();
 
+    void playOrPause();
+
     void stop();
+
+    boolean isPlaying();
 
     int getCurrentPosition();
 

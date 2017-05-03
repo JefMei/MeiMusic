@@ -194,4 +194,9 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @Override
+    protected void onBottomViewClick() {
+
+    }
 }

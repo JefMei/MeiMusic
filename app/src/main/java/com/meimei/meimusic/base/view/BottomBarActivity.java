@@ -1,6 +1,5 @@
 package com.meimei.meimusic.base.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.entity.RankingList;
-import com.meimei.meimusic.module.home.PlayingActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,11 +59,11 @@ public abstract class BottomBarActivity extends BaseActivity{
                 .into(mBottomPlay);
     }
 
+    protected abstract void onBottomViewClick();
 
     @OnClick(R.id.relative_bottom)
     void doBottomView(){
-        Intent intent = new Intent(this, PlayingActivity.class);
-        startActivity(intent);
+        onBottomViewClick();
     }
 
     @OnClick(R.id.image_bottom_playlist)
