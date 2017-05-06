@@ -40,6 +40,9 @@ public class MusicUtil {
 
     private static boolean isFirstPlay = true;   //用来记录打开App后，是否有播放过歌曲，如果播放过则就不再记录上次的退出时的播放位置
 
+
+    private static SongInfo mSongInfo;
+
     public static void bindService(Context context){
         Intent intent = new Intent(context, MusicService.class);
         musicConnetion = new MusicServiceConnection();
@@ -64,14 +67,16 @@ public class MusicUtil {
         }
     }
 
-    public static void playMusic(String url){
+    public static void playMusic(String url,SongInfo songInfo){
         musicBinder.playMusic(url);
+        mSongInfo = songInfo;
         isFirstPlay = false;
         isPlaying = true;
     }
 
-    public static void seekTo(String url ,int position){
+    public static void seekTo(String url,SongInfo songInfo ,int position){
         musicBinder.seekTo(url,position);
+        mSongInfo = songInfo;
         isFirstPlay = false;
         isPlaying = true;
     }
@@ -142,6 +147,22 @@ public class MusicUtil {
 
     public static boolean isFirstPlay(){
         return isFirstPlay;
+    }
+
+    public static SongInfo getSongInfo(){
+        if (mSongInfo == null){
+            return new SongInfo();
+        }
+        return mSongInfo;
+    }
+
+    public static void putSongInfo(SongInfo songInfo){
+        mSongInfo = songInfo;
+    }
+
+    public static class SongInfo{
+        public String songName;
+        public String singer;
     }
 
 }

@@ -21,7 +21,7 @@ import com.meimei.meimusic.module.main.MainFragment;
 import com.meimei.meimusic.module.mine.MineFragment;
 import com.meimei.meimusic.service.MusicService;
 import com.meimei.meimusic.utils.MusicUtil;
-import com.meimei.meimusic.utils.SharedPrefrencesManager;
+import com.meimei.meimusic.utils.PrefrencesManager;
 import com.meimei.meimusic.widget.BottomViewFragment;
 
 import java.util.ArrayList;
@@ -72,8 +72,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void onDestroy() {
         super.onDestroy();
 
-        SharedPrefrencesManager.getInstance().setInt(SharedPrefrencesManager.PLAYEDPOSITION,MusicUtil.getCurrentPosition());
-        SharedPrefrencesManager.getInstance().setInt(SharedPrefrencesManager.SONGDURATION,MusicUtil.getDuration());
+        PrefrencesManager.getInstance().setInt(PrefrencesManager.PLAYEDPOSITION,MusicUtil.getCurrentPosition());
+        PrefrencesManager.getInstance().setInt(PrefrencesManager.SONGDURATION,MusicUtil.getDuration());
         stopService(mMusicIntent);
         MusicUtil.unbindService(this);
     }
@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode){
             case RESULT_OK:
-                mBottomView.updateBottomView();
+//                mBottomView.updateBottomView();
                 break;
         }
     }

@@ -9,12 +9,12 @@ import com.bumptech.glide.Glide;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
 import com.meimei.meimusic.entity.RankingList;
-import com.meimei.meimusic.module.home.PlayingActivity;
+import com.meimei.meimusic.module.home.playing.PlayingActivity;
 import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
 import com.meimei.meimusic.utils.MusicUtil;
 import com.meimei.meimusic.utils.NetWorkUtils;
-import com.meimei.meimusic.utils.SharedPrefrencesManager;
+import com.meimei.meimusic.utils.PrefrencesManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -64,17 +64,17 @@ public class BottomViewFragment extends BaseFragment {
 
     public void updateBottomView(RankingList.songList songInfo, String songUrl) {
 
-        SharedPrefrencesManager.getInstance().setString(SharedPrefrencesManager.SONGNAME, songInfo.title);
-        SharedPrefrencesManager.getInstance().setString(SharedPrefrencesManager.SINGER, songInfo.author);
-        SharedPrefrencesManager.getInstance().setString(SharedPrefrencesManager.PICURL, songInfo.pic_small);
-        SharedPrefrencesManager.getInstance().setString(SharedPrefrencesManager.SONGURL, songUrl);
+        PrefrencesManager.getInstance().setString(PrefrencesManager.SONGNAME, songInfo.title);
+        PrefrencesManager.getInstance().setString(PrefrencesManager.SINGER, songInfo.author);
+        PrefrencesManager.getInstance().setString(PrefrencesManager.PICURL, songInfo.pic_small);
+        PrefrencesManager.getInstance().setString(PrefrencesManager.SONGURL, songUrl);
 
         updateBottomView();
     }
 
     public void updateBottomView() {
 
-        String pic = SharedPrefrencesManager.getInstance().getString(SharedPrefrencesManager.PICURL, "");
+        String pic = PrefrencesManager.getInstance().getString(PrefrencesManager.PICURL, "");
 
         if (!pic.equals("") && NetWorkUtils.isNetworkConnected()) {
             Glide.with(getActivity())
@@ -87,8 +87,13 @@ public class BottomViewFragment extends BaseFragment {
             mBtnPlay.setImageResource(R.mipmap.ic_play);
         }
 
-        mBtnSongName.setText(SharedPrefrencesManager.getInstance().getString(SharedPrefrencesManager.SONGNAME, ""));
-        mBtnSongAuthor.setText(SharedPrefrencesManager.getInstance().getString(SharedPrefrencesManager.SINGER, ""));
+        MusicUtil.SongInfo songInfo = new MusicUtil.SongInfo();
+        songInfo.songName = PrefrencesManager.getInstance().getString(PrefrencesManager.SONGNAME, "");
+        songInfo.singer =  PrefrencesManager.getInstance().getString(PrefrencesManager.SINGER, "");
+        MusicUtil.putSongInfo(songInfo);
+
+        mBtnSongName.setText(songInfo.songName);
+        mBtnSongAuthor.setText(songInfo.singer);
 
         updateSeekbar();
 
@@ -113,12 +118,15 @@ public class BottomViewFragment extends BaseFragment {
         }
 
         if (MusicUtil.isFirstPlay()) {
-            int playedTime = SharedPrefrencesManager.getInstance().getInt(SharedPrefrencesManager.PLAYEDPOSITION, 0);
-            int songDuration = SharedPrefrencesManager.getInstance().getInt(SharedPrefrencesManager.SONGDURATION, 0);
+            int playedTime = PrefrencesManager.getInstance().getInt(PrefrencesManager.PLAYEDPOSITION, 0);
+            int songDuration = PrefrencesManager.getInstance().getInt(PrefrencesManager.SONGDURATION, 0);
 
             mProgressBar.setProgress(songDuration == 0 ? 0 : (mProgressBar.getMax() * playedTime / songDuration));
-
+            LogUtil.i("tag","first");
+            LogUtil.i("tag","playedTime" + playedTime);
+            LogUtil.i("tag","songDuration" + songDuration);
         }
+
     }
 
     public void setSeekbar() {
@@ -157,14 +165,18 @@ public class BottomViewFragment extends BaseFragment {
     @OnClick(R.id.image_bottom_play)
     void doPlay() {
 
-        String songUrl = SharedPrefrencesManager.getInstance().getString(SharedPrefrencesManager.SONGURL, "");
+        String songUrl = PrefrencesManager.getInstance().getString(PrefrencesManager.SONGURL, "");
 
         /**
          * 如果是刚打开App进来，点击播放按钮，就会播放上次退出时播放的歌曲，并且跳到上次播放的位置
          */
         if (MusicUtil.isFirstPlay() && !songUrl.equals("")) {
 
-            MusicUtil.seekTo(songUrl, SharedPrefrencesManager.getInstance().getInt(SharedPrefrencesManager.PLAYEDPOSITION, 0));
+            MusicUtil.SongInfo songInfo = new MusicUtil.SongInfo();
+            songInfo.singer = PrefrencesManager.getInstance().getString(PrefrencesManager.SINGER,"");
+            songInfo.songName = PrefrencesManager.getInstance().getString(PrefrencesManager.SONGNAME,"");
+
+            MusicUtil.seekTo(songUrl,songInfo, PrefrencesManager.getInstance().getInt(PrefrencesManager.PLAYEDPOSITION, 0));
             Glide.with(getActivity())
                     .load(R.mipmap.ic_pause)
                     .into(mBtnPlay);

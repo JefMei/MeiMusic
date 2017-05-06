@@ -21,7 +21,7 @@
         </activity>
 
         <activity android:name=".module.main.rankinglist.newmusic.NewMusicActivity"/>
-        <activity android:name=".module.home.PlayingActivity"/>
+        <activity android:name=".module.home.playing.PlayingActivity"/>
 
         <service android:name=".service.MusicService"/>
     </application>

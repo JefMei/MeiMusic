@@ -8,7 +8,7 @@ import com.meimei.meimusic.MyApplication;
 /**
  * Created by 梅梅 on 2017/5/4.
  */
-public class SharedPrefrencesManager {
+public class PrefrencesManager {
 
     public static final String SONGNAME = "song_name";
     public static final String SINGER = "singer";
@@ -22,19 +22,19 @@ public class SharedPrefrencesManager {
 
     private String mPackName;
 
-    public SharedPrefrencesManager() {
+    public PrefrencesManager() {
         mContext = MyApplication.getContext();
         mPackName = mContext.getPackageName();
         mPreferences = mContext.getSharedPreferences(mPackName,0);
 
     }
 
-    public static SharedPrefrencesManager getInstance(){
+    public static PrefrencesManager getInstance(){
         return PrefrencesInstance.instance;
     }
 
     private static class PrefrencesInstance{
-        private static final SharedPrefrencesManager instance = new SharedPrefrencesManager();
+        private static final PrefrencesManager instance = new PrefrencesManager();
     }
 
     public void setString(String key,String value){

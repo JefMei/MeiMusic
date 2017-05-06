@@ -201,7 +201,12 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    MusicUtil.playMusic(songUrl);
+
+                    MusicUtil.SongInfo songInfo = new MusicUtil.SongInfo();
+                    songInfo.songName = mSongList.get(position).title;
+                    songInfo.singer = mSongList.get(position).author;
+
+                    MusicUtil.playMusic(songUrl,songInfo);
                     mBottomView.updateBottomView(mSongList.get(position),songUrl);
                 }
             });
@@ -220,9 +225,7 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode){
             case RESULT_OK:
-                mBottomView.updateBottomView();
-                break;
-            default:
+//                mBottomView.updateBottomView();
                 break;
         }
     }

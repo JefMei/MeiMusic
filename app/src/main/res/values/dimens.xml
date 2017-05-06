@@ -68,7 +68,8 @@
 
     <!--                   rankinglist                   -->
 
-    <dimen name="lin_magintop_official_ranking">18dp</dimen>
+    <dimen name="lin_margintop_official_ranking">18dp</dimen>
+    <dimen name="lin_paddingbottom_official_ranking">80dp</dimen>
     <!--排行榜Linearlayout的距离-->
     <dimen name="lin_height_title_ranking">18dp</dimen>
     <dimen name="lin_maginbottom_title_ranking">12dp</dimen>

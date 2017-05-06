@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -156,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:textSize="10sp"
+                    android:textSize="9sp"
                     android:textColor="@color/white"
                     android:text="00:00"/>
 
@@ -175,9 +176,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="10sp"
+                    android:textSize="9sp"
                     android:textColor="@color/white"
-                    android:text="03:30"/>
+                    android:text="00:00"/>
 
             </LinearLayout>
 

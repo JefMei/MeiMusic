@@ -8,7 +8,8 @@
         android:id="@+id/linearlayout_views"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/lin_magintop_official_ranking"
+        android:layout_marginTop="@dimen/lin_margintop_official_ranking"
+        android:paddingBottom="@dimen/lin_paddingbottom_official_ranking"
         android:orientation="horizontal">
     </LinearLayout>
 
