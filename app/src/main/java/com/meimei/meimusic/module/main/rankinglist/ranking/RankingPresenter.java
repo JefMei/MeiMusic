@@ -13,6 +13,7 @@ public class RankingPresenter extends BasePresenter{
     private IRankingModel mModel;
 
     public RankingPresenter(IRankingView iRankingView) {
+        super(iRankingView);
         mView = iRankingView;
         mModel = new RankingModel();
     }

@@ -16,11 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.meimei.meimusic.R;
-import com.meimei.meimusic.base.view.BottomBarActivity;
+import com.meimei.meimusic.base.view.BaseActivity;
 import com.meimei.meimusic.module.main.MainFragment;
 import com.meimei.meimusic.module.mine.MineFragment;
 import com.meimei.meimusic.service.MusicService;
 import com.meimei.meimusic.utils.MusicUtil;
+import com.meimei.meimusic.utils.SharedPrefrencesManager;
+import com.meimei.meimusic.widget.BottomViewFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,7 @@ import butterknife.OnClick;
 /**
  * Created by 梅梅 on 2017/3/13.
  */
-public class MainActivity extends BottomBarActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     @BindView(R.id.toolbar_main)
     Toolbar mToolbar;
@@ -56,12 +58,22 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
     private List<ImageView> mTabs = new ArrayList<>();
 
     private MainFragment mMainFragment;
-
     private MineFragment mMineFragment;
+
+    private BottomViewFragment mBottomView;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mBottomView.updateBottomView();
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        SharedPrefrencesManager.getInstance().setInt(SharedPrefrencesManager.PLAYEDPOSITION,MusicUtil.getCurrentPosition());
+        SharedPrefrencesManager.getInstance().setInt(SharedPrefrencesManager.SONGDURATION,MusicUtil.getDuration());
         stopService(mMusicIntent);
         MusicUtil.unbindService(this);
     }
@@ -78,6 +90,12 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
         mTabs.add(mImageMine);
         mTabs.add(mImageFriends);
 
+        mBottomView = BottomViewFragment.newInstance();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.framelayout_main_bottom,mBottomView)
+                .commit();
+
     }
 
     @Override
@@ -86,7 +104,6 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
         initToolbar();
         initNavigationView();
         initViewPager();
-
     }
 
     @Override
@@ -180,8 +197,12 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
     }
 
     @Override
-    protected int getLayoutRes() {
-        return R.layout.activity_main;
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case RESULT_OK:
+                mBottomView.updateBottomView();
+                break;
+        }
     }
 
     @Override
@@ -200,7 +221,7 @@ public class MainActivity extends BottomBarActivity implements ViewPager.OnPageC
     }
 
     @Override
-    protected void onBottomViewClick() {
-
+    protected int getLayoutRes() {
+        return R.layout.activity_main;
     }
 }

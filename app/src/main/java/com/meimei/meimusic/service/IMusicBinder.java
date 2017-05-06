@@ -15,6 +15,10 @@ public interface IMusicBinder{
 
     void stop();
 
+    void seekTo(String url,int position);
+
+    void seekTo(int position);
+
     boolean isPlaying();
 
     int getCurrentPosition();

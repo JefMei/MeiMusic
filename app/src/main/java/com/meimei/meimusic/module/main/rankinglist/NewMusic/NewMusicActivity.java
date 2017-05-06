@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,16 +18,14 @@ import android.widget.TextView;
 
 import com.meimei.meimusic.MyApplication;
 import com.meimei.meimusic.R;
-import com.meimei.meimusic.base.view.BottomBarActivity;
+import com.meimei.meimusic.base.view.BaseActivity;
 import com.meimei.meimusic.entity.RankingList;
-import com.meimei.meimusic.module.home.PlayingActivity;
 import com.meimei.meimusic.module.main.callback.OnPlaySongListener;
-import com.meimei.meimusic.service.IMusicBinder;
 import com.meimei.meimusic.utils.DensityUtil;
-import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
 import com.meimei.meimusic.utils.MusicUtil;
 import com.meimei.meimusic.utils.ToastUtil;
+import com.meimei.meimusic.widget.BottomViewFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +35,10 @@ import butterknife.BindView;
 /**
  * Created by 梅梅 on 2017/4/18.
  */
-public class NewMusicActivity extends BottomBarActivity implements INewMusicView{
+public class NewMusicActivity extends BaseActivity implements INewMusicView{
 
     @BindView(R.id.toolbar_ranking_official)
     Toolbar mToolbar;
-    /*@BindView(R.id.image_back_toolbar_ranking_official)
-    ImageView mBack;*/
     @BindView(R.id.tv_title_toolbar_ranking_official)
     TextView mTitle;
     @BindView(R.id.relativelayout_ranking_official_header)
@@ -72,16 +67,27 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
     private NewMusicAdapter mAdapter;
     private NestedScrollView mScrollView;
 
-    private IMusicBinder musicBinder;
-    private int mPosition;   //当前播放的歌曲的position
+    private BottomViewFragment mBottomView;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mBottomView.updateBottomView();
+    }
 
     @Override
     protected void initFragment() {
+        mBottomView = BottomViewFragment.newInstance();
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.framelayout_ranking_bottom,mBottomView)
+                .commit();
     }
 
     @Override
     protected void initView() {
+
         initOther();
         initToolbar();
         initRecyclerView();
@@ -163,6 +169,7 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
     private View.OnClickListener onBack = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            setResult(RESULT_OK);
             onBackPressed();
         }
     };
@@ -191,13 +198,11 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
         @Override
         public void play(final String songUrl, final int position) {
 
-            mPosition = position;
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    updateBottomView(mSongList.get(position));
                     MusicUtil.playMusic(songUrl);
+                    mBottomView.updateBottomView(mSongList.get(position),songUrl);
                 }
             });
 
@@ -209,23 +214,13 @@ public class NewMusicActivity extends BottomBarActivity implements INewMusicView
         }
     };
 
-    @Override
-    protected void onBottomViewClick() {
-        Bundle bundle = new Bundle();
-        bundle.putString(IntentUtil.SONGNAME,mSongList.get(mPosition).title);
-        bundle.putString(IntentUtil.SINGER,mSongList.get(mPosition).author);
-        IntentUtil.startActivityForResult(this, PlayingActivity.class,bundle);
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode){
             case RESULT_OK:
-                if (MusicUtil.isPlaying()){
-                    mBtnPlay.setImageResource(R.mipmap.ic_pause);
-                }else {
-                    mBtnPlay.setImageResource(R.mipmap.ic_play);
-                }
+                mBottomView.updateBottomView();
                 break;
             default:
                 break;

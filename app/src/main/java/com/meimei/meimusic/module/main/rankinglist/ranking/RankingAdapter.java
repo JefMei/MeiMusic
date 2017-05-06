@@ -1,7 +1,7 @@
 package com.meimei.meimusic.module.main.rankinglist.ranking;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.adapter.BaseAdapter;
 import com.meimei.meimusic.entity.RankingList;
 import com.meimei.meimusic.module.main.rankinglist.newmusic.NewMusicActivity;
+import com.meimei.meimusic.utils.IntentUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,8 +106,7 @@ public class RankingAdapter extends BaseAdapter<RankingList.songList> {
         private View.OnClickListener onNewMusicClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, NewMusicActivity.class);
-                mContext.startActivity(intent);
+                IntentUtil.startActivityForResult((Activity) mContext,NewMusicActivity.class);
             }
         };
 

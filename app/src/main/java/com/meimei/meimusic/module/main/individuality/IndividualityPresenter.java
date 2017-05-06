@@ -13,6 +13,7 @@ public class IndividualityPresenter extends BasePresenter {
     private IIndividualityModel mModel;
 
     public IndividualityPresenter(IIndividualityView view) {
+        super(view);
         mView = view;
         mModel = new IndividualityModel();
     }

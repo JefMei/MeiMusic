@@ -29,6 +29,11 @@ public class IntentUtil {
         context1.startActivity(intent);
     }
 
+    public static void startActivityForResult(Activity activity, Class clas){
+
+        startActivityForResult(activity,clas,null);
+    }
+
     public static void startActivityForResult(Activity activity, Class clas, Bundle bundle){
 
         Intent intent = new Intent(activity,clas);

@@ -1,6 +1,5 @@
 package com.meimei.meimusic.module.home;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -8,9 +7,9 @@ import android.widget.ImageView;
 
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseActivity;
-import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
 import com.meimei.meimusic.utils.MusicUtil;
+import com.meimei.meimusic.utils.SharedPrefrencesManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,9 +48,6 @@ public class PlayingActivity extends BaseActivity{
 
     private ActionBar mActionBar;
 
-    private String mSinger;
-    private String mSongName;
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -72,10 +68,6 @@ public class PlayingActivity extends BaseActivity{
 
     private void initOther() {
 
-        Intent intent = getIntent();
-        mSongName = intent.getStringExtra(IntentUtil.SONGNAME);
-        mSinger = intent.getStringExtra(IntentUtil.SINGER);
-
         if (MusicUtil.isPlaying()){
             mBtnPlay.setImageResource(R.mipmap.ic_playing_pause);
         }
@@ -84,8 +76,8 @@ public class PlayingActivity extends BaseActivity{
 
     private void initToolbar() {
 
-        mToolbar.setTitle(mSongName);
-        mToolbar.setSubtitle(mSinger);
+        mToolbar.setTitle(SharedPrefrencesManager.getInstance().getString(SharedPrefrencesManager.SONGNAME,""));
+        mToolbar.setSubtitle(SharedPrefrencesManager.getInstance().getString(SharedPrefrencesManager.SINGER,""));
         mToolbar.setTitleMarginStart(0);
 
         setSupportActionBar(mToolbar);
@@ -95,8 +87,6 @@ public class PlayingActivity extends BaseActivity{
         mToolbar.setNavigationOnClickListener(onBack);
 
     }
-
-
 
     private View.OnClickListener onBack = new View.OnClickListener() {
         @Override

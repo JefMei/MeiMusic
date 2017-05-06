@@ -66,18 +66,37 @@ public class MusicService extends Service {
         @Override
         public void playMusic(String url) {
 
-            mMediaPlayer.reset();//重置播放器，可以使之在Error状态恢复，一般可以在切换歌曲前，setDataSource之前重置下
+            if (mMediaPlayer != null){
+                mMediaPlayer.reset();//重置播放器，可以使之在Error状态恢复，一般可以在切换歌曲前，setDataSource之前重置下
 
-            try {
-                mMediaPlayer.setDataSource(url);
-                mMediaPlayer.prepare();
+                try {
+                    mMediaPlayer.setDataSource(url);
+                    mMediaPlayer.prepare();
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                play();
             }
 
-            play();
+        }
 
+        @Override
+        public void seekTo(String url, int position) {
+
+            if (mMediaPlayer != null){
+                mMediaPlayer.reset();
+
+                try {
+                    mMediaPlayer.setDataSource(url);
+                    mMediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                seekTo(position);
+            }
         }
 
         @Override
@@ -110,6 +129,19 @@ public class MusicService extends Service {
             mMediaPlayer.stop();
             if (mMediaPlayer != null) {
                 mMediaPlayer.pause();
+            }
+        }
+
+        @Override
+        public void seekTo(int position) {
+            if (mMediaPlayer != null){
+                mMediaPlayer.seekTo(position);
+                mMediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                    @Override
+                    public void onSeekComplete(MediaPlayer mp) {
+                        play();
+                    }
+                });
             }
         }
 

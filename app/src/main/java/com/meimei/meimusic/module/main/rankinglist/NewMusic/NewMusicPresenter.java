@@ -1,6 +1,6 @@
 package com.meimei.meimusic.module.main.rankinglist.newmusic;
 
-import com.meimei.meimusic.MyApplication;
+import com.meimei.meimusic.base.presenter.BasePresenter;
 import com.meimei.meimusic.entity.RankingList;
 import com.meimei.meimusic.module.main.callback.OnNewMusicListener;
 import com.meimei.meimusic.utils.LogUtil;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by 梅梅 on 2017/4/18.
  */
-public class NewMusicPresenter {
+public class NewMusicPresenter extends BasePresenter{
 
     private final String TAG = "NewMusicPresenter";
     private INewMusicModel mModel;
@@ -20,13 +20,14 @@ public class NewMusicPresenter {
     private List<Long> songIds;
 
     public NewMusicPresenter(INewMusicView view) {
+        super(view);
         mView = view;
         mModel = new NewMusicModel();
     }
 
     public void requestNewMusicForNet(int size){
 
-        if (NetWorkUtils.isNetworkConnected(MyApplication.getContext())){
+        if (NetWorkUtils.isNetworkConnected()){
             mView.showLoading();
         }else {
             mView.showNetError();

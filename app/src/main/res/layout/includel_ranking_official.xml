@@ -37,8 +37,8 @@
 
     <include layout="@layout/toolbar_ranking_official" />
 
-    <include
-        layout="@layout/view_bottom"
+    <FrameLayout
+        android:id="@+id/framelayout_ranking_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_height_bottom"
         android:layout_gravity="bottom"/>

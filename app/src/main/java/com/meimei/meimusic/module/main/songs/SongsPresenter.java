@@ -13,6 +13,7 @@ public class SongsPresenter extends BasePresenter<ISongsView>{
     private ISongsModel mModel;
 
     public SongsPresenter(ISongsView ISongsView) {
+        super(ISongsView);
         mView = ISongsView;
         mModel = new SongsModel();
     }
