@@ -20,8 +20,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".module.main.rankinglist.newmusic.NewMusicActivity"/>
-        <activity android:name=".module.home.playing.PlayingActivity"/>
+        <activity android:name=".module.main.rankinglist.newmusic.NewMusicActivity"
+            android:theme="@style/TranslucentActivityTheme"/>
+        <activity android:name=".module.home.playing.PlayingActivity"
+            android:theme="@style/TranslucentActivityTheme"/>
 
         <service android:name=".service.MusicService"/>
     </application>

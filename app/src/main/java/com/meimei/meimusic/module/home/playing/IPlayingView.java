@@ -7,9 +7,13 @@ import com.meimei.meimusic.base.view.BaseView;
  */
 public interface IPlayingView extends BaseView{
 
+    //设置 seekBar
     void setPlayedTime(String playedTime);
     void setDurationTime(String durationTime);
     void setFirstSeekbar();
     void setSeekbar();
     void updateSeekbarFailure();
+
+    //设置高斯背景图，圆图等
+    void setBlurBg(String url);
 }

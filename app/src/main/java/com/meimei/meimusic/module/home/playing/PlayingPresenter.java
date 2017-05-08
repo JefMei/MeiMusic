@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -19,6 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 public class PlayingPresenter extends BasePresenter<IPlayingView>{
 
     private final String TAG = "PlayingPresenter";
+
+    private Disposable disposable;
 
     public PlayingPresenter(IPlayingView baseView) {
         super(baseView);
@@ -41,7 +44,7 @@ public class PlayingPresenter extends BasePresenter<IPlayingView>{
         getView().setPlayedTime(TimeUtil.formatTime(played));
         getView().setDurationTime(TimeUtil.formatTime(duration));
 
-        Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
+        disposable = Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override
@@ -57,6 +60,18 @@ public class PlayingPresenter extends BasePresenter<IPlayingView>{
                         getView().updateSeekbarFailure();
                     }
                 });
+    }
+
+    public void release(){
+        if (disposable != null && !disposable.isDisposed()){
+            disposable.dispose();
+        }
+    }
+
+    public void setEffects(){
+        String big_pic = PrefrencesManager.getInstance().getString(PrefrencesManager.BIGPICURL,"");
+        getView().setBlurBg(big_pic);
+
     }
 
 }

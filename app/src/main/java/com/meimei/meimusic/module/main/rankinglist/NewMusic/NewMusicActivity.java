@@ -1,6 +1,5 @@
 package com.meimei.meimusic.module.main.rankinglist.newmusic;
 
-import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -166,10 +165,15 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
         mTvNetError.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,R.anim.ranking_out);
+    }
+
     private View.OnClickListener onBack = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            setResult(RESULT_OK);
             onBackPressed();
         }
     };
@@ -198,14 +202,14 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
         @Override
         public void play(final String songUrl, final int position) {
 
+            final MusicUtil.SongInfo songInfo = new MusicUtil.SongInfo();
+            songInfo.songName = mSongList.get(position).title;
+            songInfo.singer = mSongList.get(position).author;
+
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
-                    MusicUtil.SongInfo songInfo = new MusicUtil.SongInfo();
-                    songInfo.songName = mSongList.get(position).title;
-                    songInfo.singer = mSongList.get(position).author;
-
                     MusicUtil.playMusic(songUrl,songInfo);
                     mBottomView.updateBottomView(mSongList.get(position),songUrl);
                 }
@@ -218,18 +222,6 @@ public class NewMusicActivity extends BaseActivity implements INewMusicView{
             ToastUtil.show(errorInfo);
         }
     };
-
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (resultCode){
-            case RESULT_OK:
-//                mBottomView.updateBottomView();
-                break;
-        }
-    }
-
 
     @Override
     protected int getLayoutRes() {

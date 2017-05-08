@@ -1,7 +1,6 @@
 package com.meimei.meimusic.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,11 +13,11 @@ public class IntentUtil {
     public static final String SONGNAME = "songName";
     public static final String ISPLAYING = "isPlaying";
 
-    public static void startActivity(Context context1,Class clas){
+    public static void startActivity(Activity context1,Class clas){
         startActivity(context1,clas,null);
     }
 
-    public static void startActivity(Context context1, Class clas, Bundle bundle){
+    public static void startActivity(Activity context1, Class clas, Bundle bundle){
 
         Intent intent = new Intent(context1,clas);
 
@@ -27,6 +26,16 @@ public class IntentUtil {
         }
 
         context1.startActivity(intent);
+    }
+
+    public static void startActivityWithTransition(Activity context1, Class clas, Bundle bundle){
+        if (bundle == null){
+            startActivity(context1,clas);
+        }
+        Intent intent = new Intent(context1,clas);
+
+        context1.startActivity(intent,bundle);
+
     }
 
     public static void startActivityForResult(Activity activity, Class clas){

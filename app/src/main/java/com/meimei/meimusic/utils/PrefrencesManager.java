@@ -13,6 +13,7 @@ public class PrefrencesManager {
     public static final String SONGNAME = "song_name";
     public static final String SINGER = "singer";
     public static final String PICURL = "pic_url";
+    public static final String BIGPICURL = "big_pic_url";
     public static final String SONGURL = "song_url";
     public static final String PLAYEDPOSITION = "played_position";
     public static final String SONGDURATION = "song_duration";

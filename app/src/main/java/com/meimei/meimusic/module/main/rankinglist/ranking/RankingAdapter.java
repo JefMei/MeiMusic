@@ -106,7 +106,8 @@ public class RankingAdapter extends BaseAdapter<RankingList.songList> {
         private View.OnClickListener onNewMusicClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.startActivityForResult((Activity) mContext,NewMusicActivity.class);
+                IntentUtil.startActivity((Activity) mContext,NewMusicActivity.class);
+                ((Activity) mContext).overridePendingTransition(R.anim.ranking_in,0);
             }
         };
 

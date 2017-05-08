@@ -1,5 +1,6 @@
 package com.meimei.meimusic.widget;
 
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -10,7 +11,6 @@ import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseFragment;
 import com.meimei.meimusic.entity.RankingList;
 import com.meimei.meimusic.module.home.playing.PlayingActivity;
-import com.meimei.meimusic.utils.IntentUtil;
 import com.meimei.meimusic.utils.LogUtil;
 import com.meimei.meimusic.utils.MusicUtil;
 import com.meimei.meimusic.utils.NetWorkUtils;
@@ -67,6 +67,7 @@ public class BottomViewFragment extends BaseFragment {
         PrefrencesManager.getInstance().setString(PrefrencesManager.SONGNAME, songInfo.title);
         PrefrencesManager.getInstance().setString(PrefrencesManager.SINGER, songInfo.author);
         PrefrencesManager.getInstance().setString(PrefrencesManager.PICURL, songInfo.pic_small);
+        PrefrencesManager.getInstance().setString(PrefrencesManager.BIGPICURL,songInfo.pic_big);
         PrefrencesManager.getInstance().setString(PrefrencesManager.SONGURL, songUrl);
 
         updateBottomView();
@@ -154,7 +155,12 @@ public class BottomViewFragment extends BaseFragment {
 
     @OnClick(R.id.relative_bottom)
     void doBottomView() {
-        IntentUtil.startActivityForResult(getActivity(), PlayingActivity.class);
+        /*IntentUtil.startActivityWithTransition(getActivity(),
+                PlayingActivity.class, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());*/
+
+        Intent intent = new Intent(getActivity(), PlayingActivity.class);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.playingactivity_in,0);
     }
 
     @OnClick(R.id.image_bottom_playlist)
@@ -166,6 +172,10 @@ public class BottomViewFragment extends BaseFragment {
     void doPlay() {
 
         String songUrl = PrefrencesManager.getInstance().getString(PrefrencesManager.SONGURL, "");
+
+        if (songUrl.equals("")){
+            return;
+        }
 
         /**
          * 如果是刚打开App进来，点击播放按钮，就会播放上次退出时播放的歌曲，并且跳到上次播放的位置

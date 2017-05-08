@@ -13,6 +13,10 @@
     </style>
 
     <style name="AppTheme" parent="AppTheme.Base"></style>
+    
+    <style name="TranslucentActivityTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" ></style>
 

@@ -9,18 +9,23 @@
         android:id="@+id/image_playing_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#70000000"/>
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_playing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/Theme.AppCompat"
-            android:fitsSystemWindows="true"
             app:contentInsetStartWithNavigation="0dp"
             app:contentInsetStart="0dp"
             app:titleTextAppearance="@style/Toolbar.Title.TextSize"
@@ -39,6 +44,7 @@
                 android:layout_height="263dp"
                 android:layout_marginTop="60dp"
                 android:layout_centerHorizontal="true"
+                android:scaleType="fitCenter"
                 android:src="@mipmap/ic_playing_disc"/>
 
             <View
@@ -229,6 +235,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </FrameLayout>

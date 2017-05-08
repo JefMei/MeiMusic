@@ -5,6 +5,8 @@ import android.graphics.Point;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.meimei.meimusic.MyApplication;
+
 public class DensityUtil {
 
     private static int screenWidth  = 0;
@@ -23,9 +25,9 @@ public class DensityUtil {
         return (int) (spValue * fontScale + 0.5f);
     }
 
-    public static int getScreenHeight(Context c) {
+    public static int getScreenHeight() {
         if (screenHeight == 0) {
-            WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
+            WindowManager wm = (WindowManager) MyApplication.getContext().getSystemService(Context.WINDOW_SERVICE);
             Display display = wm.getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
@@ -34,9 +36,9 @@ public class DensityUtil {
         return screenHeight;
     }
 
-    public static int getScreenWidth(Context c) {
+    public static int getScreenWidth() {
         if (screenWidth == 0) {
-            WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
+            WindowManager wm = (WindowManager) MyApplication.getContext().getSystemService(Context.WINDOW_SERVICE);
             Display display = wm.getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);

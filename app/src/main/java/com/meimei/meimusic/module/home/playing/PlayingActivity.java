@@ -7,12 +7,14 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.meimei.meimusic.R;
 import com.meimei.meimusic.base.view.BaseActivity;
 import com.meimei.meimusic.utils.LogUtil;
 import com.meimei.meimusic.utils.MusicUtil;
 import com.meimei.meimusic.utils.PrefrencesManager;
 import com.meimei.meimusic.utils.TimeUtil;
+import com.meimei.meimusic.widget.BlurTransformation;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -68,8 +70,18 @@ public class PlayingActivity extends BaseActivity implements IPlayingView{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mPresenter.release();
         LogUtil.i(TAG,"onDestroy");
 
+    }
+
+    @Override
+    protected void setTransition() {
+        /*getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        Transition playingactivity_in = TransitionInflater.from(this).inflateTransition(R.transition.slide);
+        getWindow().setExitTransition(playingactivity_in);
+        getWindow().setEnterTransition(playingactivity_in);
+        getWindow().setReenterTransition(playingactivity_in);*/
     }
 
     @Override
@@ -93,6 +105,7 @@ public class PlayingActivity extends BaseActivity implements IPlayingView{
         }
 
         mPresenter.updateSeekbar();
+        mPresenter.setEffects();
 
     }
 
@@ -109,14 +122,6 @@ public class PlayingActivity extends BaseActivity implements IPlayingView{
         mToolbar.setNavigationOnClickListener(onBack);
 
     }
-
-    private View.OnClickListener onBack = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-//            setResult(RESULT_OK);
-            onBackPressed();
-        }
-    };
 
     @Override
     public void setPlayedTime(String playedTime) {
@@ -158,6 +163,26 @@ public class PlayingActivity extends BaseActivity implements IPlayingView{
 
     }
 
+    @Override
+    public void setBlurBg(String url) {
+        Glide.with(this)
+                .load(url)
+                .bitmapTransform(new BlurTransformation(this,url))
+                .into(mImageBg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,R.anim.playingactivity_out);
+    }
+
+    private View.OnClickListener onBack = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onBackPressed();
+        }
+    };
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
 

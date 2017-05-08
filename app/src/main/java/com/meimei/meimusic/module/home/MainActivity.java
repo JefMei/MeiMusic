@@ -197,15 +197,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (resultCode){
-            case RESULT_OK:
-//                mBottomView.updateBottomView();
-                break;
-        }
-    }
-
-    @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
